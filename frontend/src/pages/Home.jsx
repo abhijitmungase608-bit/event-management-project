@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import axiosClient from '../api/axiosClient';
+import { mockEventsData } from '../data/mockEvents';
 import EventCard from '../components/common/EventCard';
-import LoadingSkeleton from '../components/common/LoadingSkeleton';
 import { Heart, Gift, Briefcase, Sparkles, GraduationCap, Home as HomeIcon, Crown, ArrowRight, MapPin, Phone, MessageSquare, Image as ImageIcon, Calendar } from 'lucide-react';
 
 const eventCategories = [
@@ -84,60 +83,44 @@ const sampleGallery = [
 ];
 
 const Home = () => {
-  const [events, setEvents] = useState([]);
-  const [loading, setLoading] = useState(true);
-
+  const events = mockEventsData.slice(0, 6);
   const targetPhone = '919307189068';
-
-  useEffect(() => {
-    fetchFeaturedEvents();
-  }, []);
-
-  const fetchFeaturedEvents = async () => {
-    setLoading(true);
-    try {
-      const res = await axiosClient.get('/api/events');
-      if (res.data.success) {
-        setEvents(res.data.data.slice(0, 6));
-      }
-    } catch (err) {
-      console.error('Error fetching featured events:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <div className="space-y-16 bg-white text-slate-900 min-h-screen">
       
-      {/* LUXURY HERO BANNER SECTION (White Aesthetic with Framed Box) */}
-      <section className="relative h-[85vh] sm:h-[90vh] flex items-center justify-center overflow-hidden border-b border-slate-200">
+      {/* LUXURY HERO BANNER SECTION (Clean layout with proper rich text, zero text cutoff) */}
+      <section className="relative min-h-[85vh] py-16 flex items-center justify-center overflow-hidden border-b border-slate-200">
         
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=90"
-            alt="Royal Wedding & Event Banner"
-            className="w-full h-full object-cover scale-105 filter brightness-90"
+            alt="Royal Wedding & Event Venue Background"
+            className="w-full h-full object-cover scale-105 filter brightness-95"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-white/20" />
         </div>
 
-        {/* Central Framed Luxury Card (Matching Image Layout in Clean White Theme) */}
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center space-y-6">
+        {/* Central Framed Luxury Card with Rich Typography */}
+        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center space-y-6 my-auto">
           
-          <div className="inline-flex items-center gap-2 bg-amber-500/20 backdrop-blur-md border border-amber-500/40 px-5 py-1.5 rounded-full text-amber-900 text-xs font-bold uppercase tracking-widest">
+          <div className="inline-flex items-center gap-2 bg-amber-500/20 backdrop-blur-md border border-amber-500/40 px-5 py-1.5 rounded-full text-amber-900 text-xs font-bold uppercase tracking-widest shadow-xs">
             <Crown className="w-4 h-4 text-amber-700" />
-            Royal Events • Ahilyanagar, India
+            ROYAL EVENTS • AHILYANAGAR, INDIA
           </div>
 
-          {/* White Bordered Framed Box */}
-          <div className="border-2 border-slate-900 p-8 sm:p-14 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl space-y-6 transform hover:scale-[1.01] transition-transform duration-500">
+          {/* White Framed Card */}
+          <div className="border-2 border-slate-900 p-8 sm:p-12 bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl space-y-6">
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-slate-900 tracking-wide leading-tight">
               We will plan every detail of <span className="text-amber-700 italic">your dream event!</span>
             </h1>
 
-            <p className="text-slate-700 text-xs sm:text-base font-sans max-w-xl mx-auto leading-relaxed font-medium">
+            <h2 className="text-lg sm:text-xl font-serif font-bold text-slate-800 tracking-wider">
+              International Luxury Wedding & Event Planners in Ahilyanagar
+            </h2>
+
+            <p className="text-slate-600 text-xs sm:text-sm font-sans max-w-xl mx-auto leading-relaxed font-semibold">
               Weddings • Birthdays • Corporate Galas • Engagements • College Fests • Family Functions
             </p>
 
@@ -149,7 +132,7 @@ const Home = () => {
                 className="w-full sm:w-auto bg-slate-900 hover:bg-amber-600 text-white font-bold uppercase tracking-widest text-xs px-8 py-4 rounded-xl shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
               >
                 <MessageSquare className="w-4 h-4 text-emerald-400" />
-                PLAN MY EVENT (WhatsApp)
+                PLAN MY EVENT (WHATSAPP)
               </a>
 
               <Link
@@ -161,11 +144,6 @@ const Home = () => {
               </Link>
             </div>
           </div>
-
-          {/* Subheading below frame */}
-          <h2 className="text-lg sm:text-xl font-serif text-slate-900 font-semibold tracking-wider bg-white/80 py-1 px-4 rounded-full w-fit mx-auto shadow-sm">
-            International Luxury Wedding & Event Planners
-          </h2>
         </div>
       </section>
 
@@ -241,7 +219,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* EVENT PHOTO GALLERY PREVIEW SECTION */}
+      {/* EVENT PHOTO GALLERY PREVIEW SECTION (Clean Cards: Photo + Name Only) */}
       <section className="bg-slate-50 border-y border-slate-200 py-16 px-4 sm:px-6 lg:px-8 space-y-10">
         
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
@@ -250,7 +228,7 @@ const Home = () => {
               Visual Highlights
             </span>
             <h2 className="text-3xl font-bold font-serif text-slate-900">Event Photo Portfolio</h2>
-            <p className="text-xs text-slate-600">Glimpse of real organized celebrations in Ahilyanagar</p>
+            <p className="text-xs text-slate-600 font-medium">Glimpse of real organized celebrations in Ahilyanagar</p>
           </div>
 
           <Link
@@ -262,32 +240,35 @@ const Home = () => {
           </Link>
         </div>
 
-        {/* Gallery Grid */}
+        {/* Gallery Grid (Clean: Only Event Name over Photo) */}
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {sampleGallery.map((item, index) => (
-            <div
+            <Link
               key={index}
-              className="group relative rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-md"
+              to="/gallery"
+              className="group relative rounded-3xl overflow-hidden border border-slate-200 bg-white shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
-              <div className="h-56 w-full overflow-hidden">
+              <div className="h-64 w-full overflow-hidden">
                 <img
                   src={item.image}
                   alt={item.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent p-5 flex flex-col justify-end">
-                <span className="text-[10px] font-bold uppercase text-amber-300 bg-slate-950/60 backdrop-blur-xs px-2.5 py-0.5 rounded-full w-fit mb-1 border border-amber-400/30">
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent p-6 flex flex-col justify-end">
+                <span className="text-[10px] font-bold uppercase text-amber-300 bg-slate-950/60 backdrop-blur-xs px-3 py-1 rounded-full w-fit mb-1 border border-amber-400/30">
                   {item.category}
                 </span>
-                <h4 className="text-sm font-bold text-white font-serif">{item.title}</h4>
+                <h4 className="text-base font-bold text-white font-serif group-hover:text-amber-300 transition-colors">
+                  {item.title}
+                </h4>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
 
-      {/* FEATURED UPCOMING EVENTS FROM BACKEND */}
+      {/* FEATURED UPCOMING EVENTS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         <div className="flex items-center justify-between border-b border-slate-200 pb-4">
@@ -304,20 +285,11 @@ const Home = () => {
           </Link>
         </div>
 
-        {loading ? (
-          <LoadingSkeleton count={3} />
-        ) : events.length === 0 ? (
-          <div className="glass-card-white p-12 text-center text-slate-500 space-y-3 rounded-3xl">
-            <Calendar className="w-10 h-10 text-slate-400 mx-auto" />
-            <p>No featured events scheduled right now.</p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {events.map((event) => (
-              <EventCard key={event.id} event={event} />
-            ))}
-          </div>
-        )}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {events.map((event) => (
+            <EventCard key={event.id} event={event} />
+          ))}
+        </div>
       </section>
 
       {/* DIRECT WHATSAPP INQUIRY BANNER */}

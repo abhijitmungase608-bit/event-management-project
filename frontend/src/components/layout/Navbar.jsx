@@ -1,18 +1,10 @@
 import React, { useState } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
-import { Crown, LogOut, LayoutDashboard, Ticket, Menu, X, Phone, Mail, MapPin } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { Crown, Menu, X, Phone, Mail, MapPin, MessageSquare } from 'lucide-react';
 
 const Navbar = () => {
-  const { user, logout, isAdmin } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const navigate = useNavigate();
   const location = useLocation();
-
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
-  };
 
   const isActive = (path) => location.pathname === path;
 
@@ -24,6 +16,8 @@ const Navbar = () => {
     { label: 'EXPLORE EVENTS', path: '/events' },
     { label: 'CONTACT', path: '/contact' },
   ];
+
+  const targetPhone = '919307189068';
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-sm transition-all text-slate-900">
@@ -38,7 +32,7 @@ const Navbar = () => {
 
           <div className="flex items-center gap-4 font-medium">
             <a 
-              href="https://wa.me/919307189068" 
+              href={`https://wa.me/${targetPhone}`}
               target="_blank" 
               rel="noreferrer" 
               className="flex items-center gap-1.5 hover:text-amber-600 text-slate-800 font-bold transition-colors"
@@ -100,63 +94,17 @@ const Navbar = () => {
             })}
           </div>
 
-          {/* User Auth Section */}
+          {/* Direct WhatsApp CTA Button */}
           <div className="hidden md:flex items-center gap-3">
-            {user ? (
-              <div className="flex items-center gap-3">
-                {isAdmin && (
-                  <Link
-                    to="/admin/dashboard"
-                    className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold bg-amber-50 text-amber-800 border border-amber-300 hover:bg-amber-100 transition-all shadow-xs"
-                  >
-                    <LayoutDashboard className="w-4 h-4 text-amber-600" />
-                    Admin Panel
-                  </Link>
-                )}
-                
-                <Link
-                  to="/my-bookings"
-                  className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-800 border border-slate-200 hover:bg-slate-200 transition-all shadow-xs"
-                >
-                  <Ticket className="w-4 h-4 text-amber-600" />
-                  My Bookings
-                </Link>
-
-                <Link
-                  to="/profile"
-                  className="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-800 border border-slate-200 hover:bg-slate-200 transition-all shadow-xs"
-                  title="Profile"
-                >
-                  <div className="w-5 h-5 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center text-[10px] font-bold border border-amber-300">
-                    {user.fullName ? user.fullName.charAt(0).toUpperCase() : 'U'}
-                  </div>
-                  <span>{user.fullName ? user.fullName.split(' ')[0] : 'Account'}</span>
-                </Link>
-
-                <button
-                  onClick={handleLogout}
-                  className="p-2 rounded-xl text-slate-500 hover:text-red-600 hover:bg-red-50 transition-all border border-transparent"
-                  title="Logout"
-                >
-                  <LogOut className="w-4 h-4" />
-                </button>
-              </div>
-            ) : (
-              <div className="flex items-center gap-3">
-                <Link
-                  to="/login"
-                  className="text-xs font-bold uppercase tracking-wider text-slate-700 hover:text-amber-600 px-3 py-2 rounded-xl transition-colors"
-                >
-                  Sign In
-                </Link>
-                <Link
-                  to="/register"
-                  className="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold uppercase tracking-wider text-xs px-5 py-2.5 rounded-xl shadow-md shadow-amber-500/20 transition-all"
-                >
-                  Get Started
-                </Link>
-              </div>
-            )}
+            <a
+              href={`https://wa.me/${targetPhone}?text=${encodeURIComponent('Hi Royal Events, I would like to book an event in Ahilyanagar.')}`}
+              target="_blank"
+              rel="noreferrer"
+              className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold uppercase tracking-wider text-xs px-5 py-2.5 rounded-xl shadow-md transition-all flex items-center gap-2"
+            >
+              <MessageSquare className="w-4 h-4" />
+              Book on WhatsApp
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -185,56 +133,18 @@ const Navbar = () => {
             </Link>
           ))}
 
-          {user ? (
-            <div className="pt-4 border-t border-slate-200 space-y-2">
-              {isAdmin && (
-                <Link
-                  to="/admin/dashboard"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-4 py-2.5 rounded-xl text-amber-800 bg-amber-50 font-bold text-xs border border-amber-200"
-                >
-                  Admin Panel
-                </Link>
-              )}
-              <Link
-                to="/my-bookings"
-                onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-2.5 rounded-xl text-slate-800 hover:bg-slate-100 text-xs font-bold uppercase"
-              >
-                My Bookings
-              </Link>
-              <Link
-                to="/profile"
-                onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-2.5 rounded-xl text-slate-800 hover:bg-slate-100 text-xs font-bold uppercase"
-              >
-                My Profile ({user.fullName})
-              </Link>
-              <button
-                onClick={() => { setMobileMenuOpen(false); handleLogout(); }}
-                className="w-full text-left px-4 py-2.5 rounded-xl text-red-600 hover:bg-red-50 text-xs font-bold uppercase"
-              >
-                Sign Out
-              </button>
-            </div>
-          ) : (
-            <div className="pt-4 border-t border-slate-200 flex flex-col gap-2">
-              <Link
-                to="/login"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-center py-3 rounded-xl text-slate-800 bg-slate-100 border border-slate-200 font-bold text-xs uppercase"
-              >
-                Sign In
-              </Link>
-              <Link
-                to="/register"
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-center py-3 rounded-xl text-slate-950 bg-amber-500 font-bold text-xs uppercase shadow-md shadow-amber-500/20"
-              >
-                Get Started
-              </Link>
-            </div>
-          )}
+          <div className="pt-4 border-t border-slate-200">
+            <a
+              href={`https://wa.me/${targetPhone}?text=${encodeURIComponent('Hi Royal Events, I would like to book an event in Ahilyanagar.')}`}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-center py-3 rounded-xl text-white bg-emerald-600 hover:bg-emerald-700 font-bold text-xs uppercase flex items-center justify-center gap-2 shadow-md"
+            >
+              <MessageSquare className="w-4 h-4" />
+              Book on WhatsApp
+            </a>
+          </div>
         </div>
       )}
     </header>
