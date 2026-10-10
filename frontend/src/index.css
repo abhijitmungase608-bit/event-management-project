@@ -43,16 +43,22 @@
     border-color: #94a3b8;
   }
 
-  .gradient-text-violet {
-    background: linear-gradient(135deg, #6d28d9 0%, #4f46e5 50%, #9333ea 100%);
+  .gradient-text-gold {
+    background: linear-gradient(135deg, #d97706 0%, #b45309 50%, #92400e 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
-  .badge-violet {
-    background-color: rgba(124, 58, 237, 0.08);
-    color: #6d28d9;
-    border: 1px solid rgba(124, 58, 237, 0.2);
+  .glass-card-white {
+    background: #ffffff;
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+  }
+
+  .badge-amber {
+    background-color: rgba(217, 119, 6, 0.1);
+    color: #b45309;
+    border: 1px solid rgba(217, 119, 6, 0.2);
   }
 }
 

@@ -35,7 +35,7 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <div className="flex flex-col min-h-screen bg-slate-900 text-slate-100 font-sans selection:bg-indigo-500 selection:text-white">
+        <div className="flex flex-col min-h-screen bg-white text-slate-900 font-sans selection:bg-amber-500 selection:text-slate-950">
           <Toaster
             position="top-right"
             toastOptions={{
