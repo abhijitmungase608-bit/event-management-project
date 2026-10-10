@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+target/
+.mvn/
+
+# Builds
+dist/
+build/
+*.jar
+*.war
+
+# IDE & OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Logs & Environment
+*.log
+.env
+.env.local
