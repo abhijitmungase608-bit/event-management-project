@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { mockEventsData } from '../data/mockEvents';
 import EventCard from '../components/common/EventCard';
-import { Heart, Gift, Briefcase, Sparkles, GraduationCap, Home as HomeIcon, Crown, ArrowRight, MapPin, Phone, MessageSquare, Image as ImageIcon, Calendar } from 'lucide-react';
+import { Heart, Gift, Briefcase, Sparkles, GraduationCap, Home as HomeIcon, Crown, ArrowRight, MapPin, Phone, MessageSquare, Image as ImageIcon } from 'lucide-react';
 
 const eventCategories = [
   {
@@ -89,60 +89,57 @@ const Home = () => {
   return (
     <div className="space-y-16 bg-white text-slate-900 min-h-screen">
       
-      {/* LUXURY HERO BANNER SECTION (Clean layout with proper rich text, zero text cutoff) */}
-      <section className="relative min-h-[85vh] py-16 flex items-center justify-center overflow-hidden border-b border-slate-200">
+      {/* LUXURY HERO BANNER SECTION (Text directly over background image WITHOUT white card box) */}
+      <section className="relative min-h-[85vh] py-20 flex items-center justify-center overflow-hidden">
         
-        {/* Background Image */}
+        {/* Background Image with Vignette Overlay */}
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=90"
             alt="Royal Wedding & Event Venue Background"
-            className="w-full h-full object-cover scale-105 filter brightness-95"
+            className="w-full h-full object-cover scale-105 filter brightness-75"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-white/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/40 to-slate-950/50" />
         </div>
 
-        {/* Central Framed Luxury Card with Rich Typography */}
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center space-y-6 my-auto">
+        {/* Text & Buttons Directly Over Image (NO WHITE CARD BOX) */}
+        <div className="relative z-10 max-w-5xl mx-auto px-4 text-center space-y-6 my-auto text-white">
           
-          <div className="inline-flex items-center gap-2 bg-amber-500/20 backdrop-blur-md border border-amber-500/40 px-5 py-1.5 rounded-full text-amber-900 text-xs font-bold uppercase tracking-widest shadow-xs">
-            <Crown className="w-4 h-4 text-amber-700" />
+          <div className="inline-flex items-center gap-2 bg-slate-950/60 backdrop-blur-md border border-amber-400/40 px-5 py-2 rounded-full text-amber-300 text-xs font-bold uppercase tracking-widest shadow-lg">
+            <Crown className="w-4 h-4 text-amber-400" />
             ROYAL EVENTS • AHILYANAGAR, INDIA
           </div>
 
-          {/* White Framed Card */}
-          <div className="border-2 border-slate-900 p-8 sm:p-12 bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl space-y-6">
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-slate-900 tracking-wide leading-tight">
-              We will plan every detail of <span className="text-amber-700 italic">your dream event!</span>
-            </h1>
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold tracking-wide leading-tight drop-shadow-2xl">
+            We will plan every detail of <span className="text-amber-400 italic">your dream event!</span>
+          </h1>
 
-            <h2 className="text-lg sm:text-xl font-serif font-bold text-slate-800 tracking-wider">
-              International Luxury Wedding & Event Planners in Ahilyanagar
-            </h2>
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-serif font-semibold text-amber-200 tracking-wider drop-shadow-lg">
+            International Luxury Wedding & Event Planners in Ahilyanagar
+          </h2>
 
-            <p className="text-slate-600 text-xs sm:text-sm font-sans max-w-xl mx-auto leading-relaxed font-semibold">
-              Weddings • Birthdays • Corporate Galas • Engagements • College Fests • Family Functions
-            </p>
+          <p className="text-slate-200 text-sm sm:text-base font-sans max-w-2xl mx-auto leading-relaxed font-medium tracking-wide drop-shadow-md">
+            Weddings • Birthdays • Corporate Galas • Engagements • College Fests • Family Functions
+          </p>
 
-            <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href={`https://wa.me/${targetPhone}?text=${encodeURIComponent('Hi Royal Events, I would like to plan my upcoming event with you in Ahilyanagar.')}`}
-                target="_blank"
-                rel="noreferrer"
-                className="w-full sm:w-auto bg-slate-900 hover:bg-amber-600 text-white font-bold uppercase tracking-widest text-xs px-8 py-4 rounded-xl shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
-              >
-                <MessageSquare className="w-4 h-4 text-emerald-400" />
-                PLAN MY EVENT (WHATSAPP)
-              </a>
+          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href={`https://wa.me/${targetPhone}?text=${encodeURIComponent('Hi Royal Events, I would like to plan my upcoming event with you in Ahilyanagar.')}`}
+              target="_blank"
+              rel="noreferrer"
+              className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-bold uppercase tracking-widest text-xs px-8 py-4 rounded-xl shadow-2xl transition-all duration-300 flex items-center justify-center gap-2 border border-emerald-400/30"
+            >
+              <MessageSquare className="w-4 h-4" />
+              PLAN MY EVENT (WHATSAPP)
+            </a>
 
-              <Link
-                to="/gallery"
-                className="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-slate-950 hover:text-white font-bold uppercase tracking-widest text-xs px-8 py-4 rounded-xl shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
-              >
-                <ImageIcon className="w-4 h-4" />
-                VIEW OUR PORTFOLIO
-              </Link>
-            </div>
+            <Link
+              to="/gallery"
+              className="w-full sm:w-auto bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold uppercase tracking-widest text-xs px-8 py-4 rounded-xl shadow-2xl transition-all duration-300 flex items-center justify-center gap-2"
+            >
+              <ImageIcon className="w-4 h-4" />
+              VIEW OUR PORTFOLIO
+            </Link>
           </div>
         </div>
       </section>
