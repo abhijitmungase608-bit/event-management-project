@@ -21,6 +21,8 @@ import ForgotPassword from './pages/auth/ForgotPassword';
 import MyBookings from './pages/bookings/MyBookings';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Gallery from './pages/Gallery';
+import Services from './pages/Services';
 
 // Admin Pages
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -108,6 +110,8 @@ function App() {
                       <Route path="/forgot-password" element={<ForgotPassword />} />
                       
                       <Route path="/about" element={<About />} />
+                      <Route path="/services" element={<Services />} />
+                      <Route path="/gallery" element={<Gallery />} />
                       <Route path="/contact" element={<Contact />} />
 
                       {/* Protected User Routes */}

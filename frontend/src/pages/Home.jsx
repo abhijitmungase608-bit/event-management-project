@@ -1,420 +1,366 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axiosClient from '../api/axiosClient';
 import EventCard from '../components/common/EventCard';
 import LoadingSkeleton from '../components/common/LoadingSkeleton';
-import { Search, Calendar, ShieldCheck, Ticket, Sparkles, MapPin, Award, Users, ArrowRight, CheckCircle2, MessageSquare, Star, Play, ChevronRight } from 'lucide-react';
+import { Heart, Gift, Briefcase, Sparkles, GraduationCap, Home as HomeIcon, Crown, ArrowRight, MapPin, Phone, MessageSquare, CheckCircle2, Star, Calendar, Image as ImageIcon } from 'lucide-react';
 
-const categories = [
-  { name: 'Technology', icon: '💻', count: '12+ Events', color: 'bg-blue-50 text-blue-700 border-blue-200' },
-  { name: 'Music', icon: '🎵', count: '15+ Events', color: 'bg-purple-50 text-purple-700 border-purple-200' },
-  { name: 'Exhibition', icon: '🎨', count: '8+ Events', color: 'bg-amber-50 text-amber-700 border-amber-200' },
-  { name: 'Workshop', icon: '📸', count: '10+ Events', color: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-  { name: 'Business', icon: '💼', count: '14+ Events', color: 'bg-cyan-50 text-cyan-700 border-cyan-200' },
-  { name: 'Culture', icon: '🎭', count: '9+ Events', color: 'from-rose-50 to-pink-50 text-rose-700 border-rose-200' },
+const eventCategories = [
+  {
+    id: 'wedding',
+    title: 'Wedding',
+    subtitle: 'Destination Marriages, Mandap & Sangeet',
+    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80',
+    icon: Heart,
+    color: 'emerald'
+  },
+  {
+    id: 'birthday',
+    title: 'Birthday',
+    subtitle: 'Theme Parties & Milestone Birthdays',
+    image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=800&q=80',
+    icon: Gift,
+    color: 'amber'
+  },
+  {
+    id: 'corporate',
+    title: 'Corporate',
+    subtitle: 'Conventions, Award Galas & Expos',
+    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80',
+    icon: Briefcase,
+    color: 'indigo'
+  },
+  {
+    id: 'engagement',
+    title: 'Engagement',
+    subtitle: 'Ring Ceremony & Floral Stages',
+    image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80',
+    icon: Sparkles,
+    color: 'rose'
+  },
+  {
+    id: 'college',
+    title: 'College Events',
+    subtitle: 'Youth Fests, Concerts & Annual Days',
+    image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80',
+    icon: GraduationCap,
+    color: 'purple'
+  },
+  {
+    id: 'family',
+    title: 'Family Functions',
+    subtitle: 'Anniversaries, Housewarming & Pujas',
+    image: 'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=800&q=80',
+    icon: HomeIcon,
+    color: 'cyan'
+  }
 ];
 
-const testimonials = [
+const sampleGallery = [
   {
-    name: 'Ananya Sharma',
-    role: 'Event Director & Lead Organizer',
-    rating: 5,
-    comment: 'EventSphere made managing our 1,500 attendee Tech Summit seamless. The prefilled WhatsApp confirmation draft boosted attendee verification by over 40%!',
-    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80',
+    title: 'Royal Destination Mandap Setup',
+    category: 'Wedding',
+    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80'
   },
   {
-    name: 'Vikram Sengupta',
-    role: 'Frequent Event Attendee',
-    rating: 5,
-    comment: 'Instant booking references and zero payment friction! Generating the prefilled WhatsApp message saved me so much time when coordinating with friends.',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
+    title: 'Milestone Theme Birthday Bash',
+    category: 'Birthday',
+    image: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=800&q=80'
   },
   {
-    name: 'Priya Raman',
-    role: 'Photography Masterclass Host',
-    comment: 'The real-time seat availability tracking and instant cancellation handling prevented any overbooking issues for my high-demand photography masterclass.',
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
-  },
-];
-
-const steps = [
-  {
-    step: '1',
-    title: 'Discover an Event',
-    description: 'Browse curated concerts, conferences, and workshops filtered by category, location, and date.',
-    icon: Search,
+    title: 'Global Corporate Tech Summit 2026',
+    category: 'Corporate',
+    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80'
   },
   {
-    step: '2',
-    title: 'Reserve Your Tickets',
-    description: 'Select ticket quantities with real-time seat availability checks and server-side pricing.',
-    icon: Ticket,
+    title: 'Fairytale Engagement Ring Ceremony',
+    category: 'Engagement',
+    image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80'
   },
   {
-    step: '3',
-    title: 'Instant Confirmation',
-    description: 'Receive your unique booking reference (ES-YYYYMM-XXXXXX) instantly on screen.',
-    icon: CheckCircle2,
+    title: 'Inter-College Youth Rock Concert',
+    category: 'College Events',
+    image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80'
   },
   {
-    step: '4',
-    title: 'Prepare WhatsApp Draft',
-    description: 'Generate prefilled WhatsApp click-to-chat messages to easily share or present details.',
-    icon: MessageSquare,
-  },
+    title: 'Golden Jubilee Family Reunion Feast',
+    category: 'Family Functions',
+    image: 'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=800&q=80'
+  }
 ];
 
 const Home = () => {
-  const [featuredEvents, setFeaturedEvents] = useState([]);
+  const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [activeCategoryFilter, setActiveCategoryFilter] = useState('All');
-  const navigate = useNavigate();
+
+  const targetPhone = '919307189068';
 
   useEffect(() => {
-    const fetchFeatured = async () => {
-      try {
-        const res = await axiosClient.get('/api/events/featured');
-        if (res.data.success) {
-          setFeaturedEvents(res.data.data);
-        }
-      } catch (err) {
-        console.error('Failed to load featured events:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchFeatured();
+    fetchFeaturedEvents();
   }, []);
 
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      navigate(`/events?search=${encodeURIComponent(searchQuery.trim())}`);
-    } else {
-      navigate('/events');
+  const fetchFeaturedEvents = async () => {
+    setLoading(true);
+    try {
+      const res = await axiosClient.get('/api/events');
+      if (res.data.success) {
+        setEvents(res.data.data.slice(0, 6));
+      }
+    } catch (err) {
+      console.error('Error fetching featured events:', err);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const filteredFeatured = activeCategoryFilter === 'All'
-    ? featuredEvents
-    : featuredEvents.filter(e => e.category.toLowerCase() === activeCategoryFilter.toLowerCase());
-
   return (
-    <div className="space-y-20 pb-20 bg-slate-50 text-slate-900">
+    <div className="space-y-16 bg-slate-950 text-slate-100 min-h-screen">
       
-      {/* Hero Section */}
-      <section className="pt-8 pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          {/* Left Column */}
-          <div className="lg:col-span-7 space-y-6 text-left">
-            
-            {/* Violet Accent Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-violet-100 border border-violet-200 text-violet-700 text-xs font-bold uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5 text-violet-600" />
-              YOUR NEXT EXPERIENCE STARTS HERE
-            </div>
+      {/* LUXURY HERO BANNER SECTION (Directly inspired by Reference Image) */}
+      <section className="relative h-[85vh] sm:h-[90vh] flex items-center justify-center overflow-hidden border-b border-slate-800">
+        
+        {/* Background Image with Dark Vignette Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=90"
+            alt="Royal Wedding & Event Banner"
+            className="w-full h-full object-cover scale-105 filter brightness-75"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-slate-950/40" />
+        </div>
 
-            {/* Headline */}
-            <h1 className="text-4xl sm:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.1]">
-              Discover Events.<br />
-              <span className="gradient-text-violet">Create Unforgettable Memories.</span>
+        {/* Central Framed Luxury Card (Matching Image Layout) */}
+        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center space-y-6">
+          
+          <div className="inline-flex items-center gap-2 bg-amber-500/20 backdrop-blur-md border border-amber-500/40 px-5 py-1.5 rounded-full text-amber-300 text-xs font-bold uppercase tracking-widest">
+            <Crown className="w-4 h-4 text-amber-400" />
+            Royal Events • Ahilyanagar, India
+          </div>
+
+          {/* White Bordered Box (As shown in reference image) */}
+          <div className="border-2 border-white/80 p-8 sm:p-14 bg-slate-950/50 backdrop-blur-md rounded-2xl shadow-2xl space-y-6 transform hover:scale-[1.01] transition-transform duration-500">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-white tracking-wide leading-tight">
+              We will plan every detail of <span className="text-amber-300 italic">your dream event!</span>
             </h1>
 
-            {/* Supporting Text */}
-            <p className="text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed">
-              Find concerts, festivals, conferences, workshops and unforgettable experiences happening around you. Discover your next great event with EventSphere.
+            <p className="text-slate-200 text-xs sm:text-base font-sans max-w-xl mx-auto leading-relaxed">
+              Weddings • Birthdays • Corporate Galas • Engagements • College Fests • Family Functions
             </p>
 
-            {/* Clean White Search Card */}
-            <form onSubmit={handleSearchSubmit} className="pt-2">
-              <div className="bg-white p-2 rounded-2xl flex flex-col sm:flex-row items-center gap-2 shadow-lg border border-slate-200">
-                <div className="flex items-center gap-3 px-4 py-3 w-full">
-                  <Search className="w-5 h-5 text-violet-600 flex-shrink-0" />
-                  <input
-                    type="text"
-                    placeholder="Search events, categories, or locations..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="bg-transparent text-slate-900 placeholder-slate-400 focus:outline-none text-sm w-full font-medium"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full sm:w-auto btn-violet text-white text-sm font-semibold px-7 py-3 rounded-xl shadow-md flex items-center justify-center gap-2 flex-shrink-0"
-                >
-                  <span>Search</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
-            </form>
-
-            {/* CTA Buttons */}
-            <div className="flex items-center gap-4 pt-2">
-              <Link
-                to="/events"
-                className="btn-violet text-white text-sm font-semibold px-6 py-3 rounded-xl shadow-md flex items-center gap-2"
-              >
-                <span>Explore Events</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+            <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="#how-it-works"
-                className="btn-secondary-light text-sm px-6 py-3 rounded-xl flex items-center gap-2"
+                href={`https://wa.me/${targetPhone}?text=${encodeURIComponent('Hi Royal Events, I would like to plan my upcoming event with you in Ahilyanagar.')}`}
+                target="_blank"
+                rel="noreferrer"
+                className="w-full sm:w-auto bg-slate-950 hover:bg-amber-500 hover:text-slate-950 text-white font-bold uppercase tracking-widest text-xs px-8 py-4 rounded-xl border border-white/80 shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
               >
-                <span>How It Works</span>
+                <MessageSquare className="w-4 h-4 text-emerald-400" />
+                PLAN MY EVENT (WhatsApp)
               </a>
-            </div>
 
-          </div>
-
-          {/* Right Column: Tasteful Photography Collage */}
-          <div className="lg:col-span-5 relative">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-4">
-                <div className="rounded-3xl overflow-hidden shadow-lg border border-slate-200 h-56">
-                  <img
-                    src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=600&q=80"
-                    alt="Tech Summit"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <div className="rounded-3xl overflow-hidden shadow-lg border border-slate-200 h-40">
-                  <img
-                    src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80"
-                    alt="Exhibition"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-              </div>
-              <div className="space-y-4 pt-6">
-                <div className="rounded-3xl overflow-hidden shadow-lg border border-slate-200 h-40">
-                  <img
-                    src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80"
-                    alt="Music Festival"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <div className="rounded-3xl overflow-hidden shadow-lg border border-slate-200 h-56">
-                  <img
-                    src="https://images.unsplash.com/photo-1552168324-d612d77725e3?auto=format&fit=crop&w=600&q=80"
-                    alt="Workshop"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-              </div>
+              <Link
+                to="/gallery"
+                className="w-full sm:w-auto bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold uppercase tracking-widest text-xs px-8 py-4 rounded-xl shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+              >
+                <ImageIcon className="w-4 h-4" />
+                VIEW OUR PORTFOLIO
+              </Link>
             </div>
           </div>
 
+          {/* Subheading below frame (Matching reference image) */}
+          <h2 className="text-lg sm:text-xl font-serif text-slate-200 tracking-wider">
+            International Luxury Wedding & Event Planners
+          </h2>
         </div>
       </section>
 
-      {/* Professional Stats Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 text-center shadow-xs">
-            <p className="text-3xl font-extrabold text-slate-900">500+</p>
-            <p className="text-xs text-slate-500 font-semibold mt-1">Events Listed</p>
-          </div>
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 text-center shadow-xs">
-            <p className="text-3xl font-extrabold text-violet-600">50K+</p>
-            <p className="text-xs text-slate-500 font-semibold mt-1">Tickets Reserved</p>
-          </div>
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 text-center shadow-xs">
-            <p className="text-3xl font-extrabold text-emerald-600">100+</p>
-            <p className="text-xs text-slate-500 font-semibold mt-1">Event Organizers</p>
-          </div>
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 text-center shadow-xs">
-            <p className="text-3xl font-extrabold text-amber-500">4.8 / 5</p>
-            <p className="text-xs text-slate-500 font-semibold mt-1">User Rating</p>
-          </div>
+      {/* REQUIRED 6 EVENT CATEGORIES SECTION */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        
+        <div className="text-center space-y-3">
+          <span className="text-xs font-bold uppercase tracking-widest text-amber-400 bg-amber-500/10 px-4 py-1.5 rounded-full border border-amber-500/20">
+            Tailored Event Services
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white font-serif tracking-wide">
+            Our Royal Event <span className="gradient-text-gold">Categories</span>
+          </h2>
+          <p className="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto">
+            Explore our specialized event management services designed for every occasion in Ahilyanagar
+          </p>
+        </div>
+
+        {/* 6 Category Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {eventCategories.map((cat) => {
+            const IconComponent = cat.icon;
+            return (
+              <div
+                key={cat.id}
+                className="group relative rounded-3xl overflow-hidden border border-slate-800 bg-slate-900/80 shadow-xl hover:border-amber-500/40 transition-all duration-500 transform hover:-translate-y-2 flex flex-col justify-between"
+              >
+                <div className="h-60 w-full overflow-hidden relative">
+                  <img
+                    src={cat.image}
+                    alt={cat.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+                  
+                  <div className="absolute top-4 left-4 bg-slate-950/80 border border-slate-800 p-2.5 rounded-2xl text-amber-400 shadow-md">
+                    <IconComponent className="w-5 h-5" />
+                  </div>
+                </div>
+
+                <div className="p-6 space-y-3 flex-grow flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-2xl font-bold font-serif text-white group-hover:text-amber-300 transition-colors">
+                      {cat.title}
+                    </h3>
+                    <p className="text-xs text-slate-400 mt-1 font-sans">
+                      {cat.subtitle}
+                    </p>
+                  </div>
+
+                  <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between">
+                    <Link
+                      to={`/services#${cat.id}`}
+                      className="text-xs font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1.5"
+                    >
+                      <span>Explore {cat.title}</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+
+                    <a
+                      href={`https://wa.me/${targetPhone}?text=${encodeURIComponent(`Hi Royal Events, I am interested in booking a ${cat.title} event in Ahilyanagar.`)}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="bg-emerald-600/20 text-emerald-400 hover:bg-emerald-600 hover:text-white border border-emerald-500/30 text-xs font-semibold px-3 py-1.5 rounded-xl transition-all flex items-center gap-1"
+                    >
+                      <MessageSquare className="w-3.5 h-3.5" /> WhatsApp
+                    </a>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
 
-      {/* Featured Events Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 border-b border-slate-200 pb-6">
-          <div>
-            <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">Discover Popular <span className="gradient-text-violet">Events</span></h2>
-            <p className="text-slate-500 text-sm mt-1">Find experiences worth remembering.</p>
+      {/* EVENT PHOTO GALLERY PREVIEW SECTION */}
+      <section className="bg-slate-900/60 border-y border-slate-800 py-16 px-4 sm:px-6 lg:px-8 space-y-10">
+        
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="space-y-2 text-center md:text-left">
+            <span className="text-xs font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+              Visual Highlights
+            </span>
+            <h2 className="text-3xl font-bold font-serif text-white">Event Photo Portfolio</h2>
+            <p className="text-xs text-slate-400">Glimpse of real organized celebrations in Ahilyanagar</p>
           </div>
 
-          <div className="flex items-center gap-4">
-            {/* Category Filters */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-              {['All', 'Technology', 'Music', 'Exhibition', 'Workshop', 'Business'].map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategoryFilter(cat)}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all flex-shrink-0 ${
-                    activeCategoryFilter === cat
-                      ? 'btn-violet text-white shadow-md'
-                      : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200'
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
+          <Link
+            to="/gallery"
+            className="bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-xl shadow-lg transition-all flex items-center gap-2"
+          >
+            <ImageIcon className="w-4 h-4" />
+            View Full Photo Gallery
+          </Link>
+        </div>
 
-            <Link
-              to="/events"
-              className="text-xs font-bold text-violet-600 hover:text-violet-800 flex items-center gap-1 flex-shrink-0"
+        {/* Gallery Grid */}
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {sampleGallery.map((item, index) => (
+            <div
+              key={index}
+              className="group relative rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 shadow-xl"
             >
-              View All Events →
-            </Link>
+              <div className="h-56 w-full overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent p-5 flex flex-col justify-end">
+                <span className="text-[10px] font-bold uppercase text-amber-400 bg-amber-500/20 px-2.5 py-0.5 rounded-full w-fit mb-1 border border-amber-500/30">
+                  {item.category}
+                </span>
+                <h4 className="text-sm font-bold text-white font-serif">{item.title}</h4>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* FEATURED UPCOMING EVENTS FROM BACKEND */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        
+        <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-widest text-amber-400">Book Tickets Online</span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white font-serif">Featured Upcoming Events</h2>
           </div>
+          <Link
+            to="/events"
+            className="text-xs font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1"
+          >
+            <span>Explore All Events</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
 
         {loading ? (
-          <LoadingSkeleton count={6} />
-        ) : filteredFeatured.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredFeatured.map((event) => (
-              <EventCard key={event.id} event={event} />
-            ))}
+          <LoadingSkeleton count={3} />
+        ) : events.length === 0 ? (
+          <div className="glass-card p-12 text-center text-slate-400 space-y-3">
+            <Calendar className="w-10 h-10 text-slate-600 mx-auto" />
+            <p>No featured events scheduled right now.</p>
           </div>
         ) : (
-          <div className="bg-white p-12 text-center rounded-3xl border border-slate-200 space-y-3">
-            <p className="text-3xl">🔍</p>
-            <p className="text-slate-700 font-semibold text-sm">No events found under category "{activeCategoryFilter}"</p>
-            <button
-              onClick={() => setActiveCategoryFilter('All')}
-              className="text-xs text-violet-600 font-bold hover:underline"
-            >
-              Reset to All Events
-            </button>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {events.map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
           </div>
         )}
       </section>
 
-      {/* Browse by Categories */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
-          <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">Browse by <span className="gradient-text-violet">Category</span></h2>
-          <p className="text-slate-500 text-sm">Explore events tailored to your specific interest</p>
-        </div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-          {categories.map((cat) => (
-            <Link
-              key={cat.name}
-              to={`/events?category=${cat.name}`}
-              className={`bg-white p-6 rounded-3xl text-center flex flex-col items-center justify-center gap-3 border border-slate-200/80 shadow-xs hover:shadow-md hover:border-violet-300 transition-all group`}
-            >
-              <span className="text-4xl group-hover:scale-110 transition-transform duration-300">{cat.icon}</span>
-              <div>
-                <h3 className="font-bold text-slate-900 text-sm group-hover:text-violet-600 transition-colors">{cat.name}</h3>
-                <p className="text-[11px] text-slate-500 mt-0.5">{cat.count}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* How EventSphere Works */}
-      <section id="how-it-works" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200/80 shadow-sm space-y-10">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-violet-700 bg-violet-50 px-3 py-1 rounded-full border border-violet-200">
-              BOOKING PROCESS
+      {/* DIRECT WHATSAPP INQUIRY BANNER */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <div className="glass-card p-8 sm:p-12 rounded-3xl border border-slate-800 bg-gradient-to-r from-slate-900 via-amber-950/30 to-slate-900 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
+          <div className="space-y-3 text-center md:text-left">
+            <span className="text-xs font-bold uppercase tracking-widest text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+              Direct Contact & Booking
             </span>
-            <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">How EventSphere Works</h2>
-            <p className="text-slate-500 text-sm">Reserve your ticket in four simple steps</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {steps.map((s) => {
-              const Icon = s.icon;
-              return (
-                <div key={s.step} className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-3 relative group">
-                  <span className="w-8 h-8 rounded-full bg-violet-600 text-white font-extrabold text-xs flex items-center justify-center">
-                    {s.step}
-                  </span>
-                  <h3 className="text-base font-bold text-slate-900">{s.title}</h3>
-                  <p className="text-xs text-slate-500 leading-relaxed">{s.description}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* WhatsApp Booking Information Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-emerald-50 border border-emerald-200 rounded-3xl p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="space-y-2 max-w-2xl">
-            <div className="flex items-center gap-2 text-emerald-800 font-bold text-sm">
-              <MessageSquare className="w-5 h-5 text-emerald-600" />
-              <span>WhatsApp Click-to-Chat Draft Integration</span>
-            </div>
-            <h3 className="text-xl font-bold text-slate-900">Seamless Mobile Communication</h3>
-            <p className="text-xs text-slate-600 leading-relaxed">
-              After placing a booking, EventSphere generates a prefilled WhatsApp message draft containing your booking reference, event date, venue, and ticket quantity. Clicking the draft link opens WhatsApp on your device so you can send details instantly to the organizer or your guests.
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-serif">
+              Ready to Host Your Event in Ahilyanagar?
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
+              Connect directly with Royal Events team on WhatsApp for custom decor estimates, venue bookings, and instant reservations.
             </p>
-          </div>
-          <Link
-            to="/events"
-            className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs px-6 py-3 rounded-xl shadow-md flex-shrink-0 transition-colors"
-          >
-            Try Booking an Event
-          </Link>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
-          <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">What Users Say</h2>
-          <p className="text-slate-500 text-sm">Trusted by event organizers and attendees</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((t, idx) => (
-            <div key={idx} className="bg-white p-6 rounded-3xl flex flex-col justify-between space-y-4 border border-slate-200/80 shadow-xs">
-              <div className="space-y-3">
-                <div className="flex items-center gap-1 text-amber-500">
-                  {Array.from({ length: t.rating }).map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-amber-500" />
-                  ))}
-                </div>
-                <p className="text-slate-600 text-xs italic leading-relaxed">"{t.comment}"</p>
-              </div>
-
-              <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
-                <img src={t.avatar} alt={t.name} className="w-10 h-10 rounded-full object-cover border border-slate-200" />
-                <div>
-                  <h4 className="text-slate-900 text-xs font-bold">{t.name}</h4>
-                  <p className="text-[11px] text-violet-600 font-semibold">{t.role}</p>
-                </div>
-              </div>
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-xs text-slate-300 pt-2">
+              <span className="flex items-center gap-1.5"><MapPin className="w-4 h-4 text-amber-400" /> Ahilyanagar, India</span>
+              <span className="flex items-center gap-1.5"><Phone className="w-4 h-4 text-emerald-400" /> +91 9307189068</span>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
 
-      {/* CTA Banner */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-slate-900 text-white rounded-3xl p-10 sm:p-14 text-center relative overflow-hidden shadow-2xl">
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4 leading-tight">
-            Ready to Discover Your Next Experience?
-          </h2>
-          <p className="text-slate-300 text-sm max-w-xl mx-auto mb-8 leading-relaxed">
-            Create an account on EventSphere to browse upcoming events, reserve tickets, or manage your event listings.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <Link
-              to="/register"
-              className="btn-violet text-white text-sm font-semibold px-8 py-3.5 rounded-xl shadow-lg"
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto flex-shrink-0">
+            <a
+              href={`https://wa.me/${targetPhone}?text=${encodeURIComponent('Hi Royal Events, I would like to inquire about booking/planning an event in Ahilyanagar.')}`}
+              target="_blank"
+              rel="noreferrer"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-6 rounded-xl shadow-xl flex items-center justify-center gap-2 text-xs transition-all"
             >
-              Get Started Free
-            </Link>
+              <MessageSquare className="w-4 h-4" />
+              Chat on WhatsApp (+91 9307189068)
+            </a>
+
             <Link
-              to="/events"
-              className="bg-slate-800 hover:bg-slate-700 text-slate-200 text-sm font-semibold px-8 py-3.5 rounded-xl border border-slate-700 transition-colors"
+              to="/contact"
+              className="bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-bold py-3.5 px-6 rounded-xl shadow-xl flex items-center justify-center gap-2 text-xs transition-all"
             >
-              Explore Events
+              Send Message
             </Link>
           </div>
         </div>
