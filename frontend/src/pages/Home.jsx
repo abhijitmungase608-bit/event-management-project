@@ -89,20 +89,20 @@ const Home = () => {
   return (
     <div className="space-y-16 bg-white text-slate-900 min-h-screen">
       
-      {/* LUXURY HERO BANNER SECTION (Text directly over background image WITHOUT white card box) */}
+      {/* VIBRANT MANDAP HERO BANNER SECTION (Matching Image 1 Mandap Setup) */}
       <section className="relative min-h-[85vh] py-20 flex items-center justify-center overflow-hidden">
         
-        {/* Background Image with Vignette Overlay */}
+        {/* Mandap Background Image (Bright Beachside Floral Mandap like Image 1) */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=90"
-            alt="Royal Wedding & Event Venue Background"
-            className="w-full h-full object-cover scale-105 filter brightness-75"
+            src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=2000&q=90"
+            alt="Beachside Outdoor Wedding Mandap Stage Background"
+            className="w-full h-full object-cover scale-105 filter brightness-85"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/40 to-slate-950/50" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/45 to-slate-950/40" />
         </div>
 
-        {/* Text & Buttons Directly Over Image (NO WHITE CARD BOX) */}
+        {/* Text & Buttons Directly Over Image (WITHOUT International) */}
         <div className="relative z-10 max-w-5xl mx-auto px-4 text-center space-y-6 my-auto text-white">
           
           <div className="inline-flex items-center gap-2 bg-slate-950/60 backdrop-blur-md border border-amber-400/40 px-5 py-2 rounded-full text-amber-300 text-xs font-bold uppercase tracking-widest shadow-lg">
@@ -115,7 +115,7 @@ const Home = () => {
           </h1>
 
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-serif font-semibold text-amber-200 tracking-wider drop-shadow-lg">
-            International Luxury Wedding & Event Planners in Ahilyanagar
+            Passionate Wedding Planner & Event Specialist in Ahilyanagar
           </h2>
 
           <p className="text-slate-200 text-sm sm:text-base font-sans max-w-2xl mx-auto leading-relaxed font-medium tracking-wide drop-shadow-md">
