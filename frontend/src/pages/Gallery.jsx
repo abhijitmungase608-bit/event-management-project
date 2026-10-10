@@ -132,11 +132,11 @@ const Gallery = () => {
   const targetPhone = '919307189068';
 
   return (
-    <div className="bg-white text-slate-900 min-h-screen py-12 px-4 sm:px-6 lg:px-8 space-y-12">
+    <div className="bg-white text-slate-900 min-h-screen py-12 px-4 sm:px-6 lg:px-8 space-y-12 animate-fadeIn">
       
       {/* Header */}
-      <div className="max-w-4xl mx-auto text-center space-y-4">
-        <span className="text-xs font-bold uppercase tracking-widest text-amber-800 bg-amber-100 px-4 py-1.5 rounded-full border border-amber-200 inline-flex items-center gap-1.5">
+      <div className="max-w-4xl mx-auto text-center space-y-4 animate-slideDown">
+        <span className="text-xs font-bold uppercase tracking-widest text-amber-800 bg-amber-100 px-4 py-1.5 rounded-full border border-amber-200 inline-flex items-center gap-1.5 animate-float">
           <Sparkles className="w-3.5 h-3.5" />
           Royal Events Event Portfolio & Photo Gallery
         </span>
@@ -149,12 +149,12 @@ const Gallery = () => {
       </div>
 
       {/* Category Filter Bar */}
-      <div className="max-w-5xl mx-auto flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+      <div className="max-w-5xl mx-auto flex flex-wrap items-center justify-center gap-2 sm:gap-3 animate-slideUp">
         {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 ${
+            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 hover:scale-105 ${
               activeCategory === cat
                 ? 'bg-amber-500 text-slate-950 font-bold shadow-md'
                 : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200'
@@ -165,19 +165,20 @@ const Gallery = () => {
         ))}
       </div>
 
-      {/* Photos Grid (CLEAN CARD DESIGN: Image + Category Badge + Title ONLY) */}
+      {/* Photos Grid with Zoom & Fade Animations */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredItems.map((item) => (
+        {filteredItems.map((item, idx) => (
           <div
             key={item.id}
             onClick={() => setSelectedPhoto(item)}
-            className="group relative rounded-3xl overflow-hidden cursor-pointer border border-slate-200 bg-white shadow-md hover:shadow-2xl hover:border-amber-400 transition-all duration-500 transform hover:-translate-y-1.5"
+            className="group relative rounded-3xl overflow-hidden cursor-pointer border border-slate-200 bg-white shadow-md hover:shadow-2xl hover:border-amber-400 transition-all duration-500 transform hover:-translate-y-2 animate-zoomIn"
+            style={{ animationDelay: `${idx * 0.08}s` }}
           >
             <div className="h-64 sm:h-72 w-full overflow-hidden">
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
               />
             </div>
             
@@ -207,13 +208,13 @@ const Gallery = () => {
         ))}
       </div>
 
-      {/* Photo Lightbox Modal (FULL DETAILS SHOWN HERE ON CLICK) */}
+      {/* Photo Lightbox Modal with Zoom Animation */}
       {selectedPhoto && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-fadeIn">
-          <div className="bg-white border border-slate-200 rounded-3xl max-w-3xl w-full p-6 sm:p-8 relative text-slate-900 space-y-5 shadow-2xl">
+          <div className="bg-white border border-slate-200 rounded-3xl max-w-3xl w-full p-6 sm:p-8 relative text-slate-900 space-y-5 shadow-2xl animate-zoomIn">
             <button
               onClick={() => setSelectedPhoto(null)}
-              className="absolute top-5 right-5 bg-slate-100 hover:bg-slate-200 text-slate-700 p-2.5 rounded-full transition-colors"
+              className="absolute top-5 right-5 bg-slate-100 hover:bg-slate-200 text-slate-700 p-2.5 rounded-full transition-colors hover:scale-110"
             >
               <X className="w-5 h-5" />
             </button>
@@ -243,7 +244,7 @@ const Gallery = () => {
                 href={`https://wa.me/${targetPhone}?text=${encodeURIComponent(`Hi Royal Events, I am interested in booking a ${selectedPhoto.category} event like: ${selectedPhoto.title}`)}`}
                 target="_blank"
                 rel="noreferrer"
-                className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg flex items-center justify-center gap-2 text-xs transition-all"
+                className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg flex items-center justify-center gap-2 text-xs hover:scale-105 transition-all"
               >
                 <MessageSquare className="w-4 h-4" />
                 Book This Event Type on WhatsApp (+91 9307189068)
