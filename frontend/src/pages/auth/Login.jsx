@@ -36,7 +36,7 @@ const Login = () => {
   };
 
   const handleAdminDemoFill = () => {
-    setEmail('admin@eventsphere.com');
+    setEmail('agaleashwini24@gmail.com');
     setPassword('Admin@123456');
     toast.success('Admin demo credentials autofilled!');
   };

@@ -53,7 +53,7 @@ public class EventService {
                 .bookingDeadline(request.getBookingDeadline() != null ? request.getBookingDeadline() :
                         request.getEventDate().atStartOfDay().toInstant(java.time.ZoneOffset.UTC))
                 .organizerName(StringUtils.hasText(request.getOrganizerName()) ? request.getOrganizerName() : "EventSphere Team")
-                .organizerContact(StringUtils.hasText(request.getOrganizerContact()) ? request.getOrganizerContact() : "+919876543210")
+                .organizerContact(StringUtils.hasText(request.getOrganizerContact()) ? request.getOrganizerContact() : "+919307189068")
                 .build();
 
         Event savedEvent = eventRepository.save(event);

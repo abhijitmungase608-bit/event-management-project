@@ -21,7 +21,7 @@ public class EventController {
 
     private final EventService eventService;
 
-    @Value("${app.whatsapp.business-number:919876543210}")
+    @Value("${app.whatsapp.business-number:919307189068}")
     private String defaultBusinessNumber;
 
     public EventController(EventService eventService) {

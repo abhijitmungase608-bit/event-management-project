@@ -52,15 +52,15 @@ const Footer = () => {
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-3">
                 <MapPin className="w-4 h-4 text-violet-600 flex-shrink-0" />
-                <span>Tech Park Tower, Bengaluru, KA, India</span>
+                <span>Ahilyanagar, India</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-violet-600 flex-shrink-0" />
-                <span>+91 98765 43210</span>
+                <span>+91 9307189068</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-violet-600 flex-shrink-0" />
-                <span>support@eventsphere.com</span>
+                <span>agaleashwini24@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -68,10 +68,7 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-          <p>© {new Date().getFullYear()} EventSphere Inc. MCA Academic Project Submission.</p>
-          <p className="flex items-center gap-1">
-            Built with Spring Boot 3 & React Vite
-          </p>
+          <p>© {new Date().getFullYear()} EventSphere Inc. All rights reserved.</p>
         </div>
       </div>
     </footer>

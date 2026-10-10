@@ -29,7 +29,7 @@ public class DatabaseSeeder implements CommandLineRunner {
     private final EventRepository eventRepository;
     private final PasswordEncoder passwordEncoder;
 
-    @Value("${app.admin.bootstrap-email:admin@eventsphere.com}")
+    @Value("${app.admin.bootstrap-email:agaleashwini24@gmail.com}")
     private String adminEmail;
 
     @Value("${app.admin.bootstrap-password:Admin@123456}")
@@ -52,7 +52,7 @@ public class DatabaseSeeder implements CommandLineRunner {
             User admin = User.builder()
                     .fullName("EventSphere System Admin")
                     .email(adminEmail.toLowerCase())
-                    .phone("+919876543210")
+                    .phone("+919307189068")
                     .passwordHash(passwordEncoder.encode(adminPassword))
                     .role(Role.ROLE_ADMIN)
                     .enabled(true)
@@ -76,7 +76,7 @@ public class DatabaseSeeder implements CommandLineRunner {
                     .coverImage("https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80")
                     .venue("International Convention Center")
                     .address("Plot 12, Tech Park Avenue, Electronic City")
-                    .city("Bengaluru")
+                    .city("Ahilyanagar")
                     .eventDate(LocalDate.now().plusDays(15))
                     .startTime(LocalTime.of(9, 30))
                     .endTime(LocalTime.of(18, 0))
@@ -86,7 +86,7 @@ public class DatabaseSeeder implements CommandLineRunner {
                     .published(true)
                     .bookingDeadline(Instant.now().plus(14, ChronoUnit.DAYS))
                     .organizerName("TechX Innovations")
-                    .organizerContact("+919876543210")
+                    .organizerContact("+919307189068")
                     .build(),
 
                 Event.builder()
@@ -107,7 +107,7 @@ public class DatabaseSeeder implements CommandLineRunner {
                     .published(true)
                     .bookingDeadline(Instant.now().plus(24, ChronoUnit.DAYS))
                     .organizerName("Sunwave Entertainment")
-                    .organizerContact("+919876543210")
+                    .organizerContact("+919307189068")
                     .build(),
 
                 Event.builder()
@@ -128,7 +128,7 @@ public class DatabaseSeeder implements CommandLineRunner {
                     .published(true)
                     .bookingDeadline(Instant.now().plus(29, ChronoUnit.DAYS))
                     .organizerName("Royal Events India")
-                    .organizerContact("+919876543210")
+                    .organizerContact("+919307189068")
                     .build(),
 
                 Event.builder()
@@ -149,7 +149,7 @@ public class DatabaseSeeder implements CommandLineRunner {
                     .published(true)
                     .bookingDeadline(Instant.now().plus(9, ChronoUnit.DAYS))
                     .organizerName("Visionary Lens Studio")
-                    .organizerContact("+919876543210")
+                    .organizerContact("+919307189068")
                     .build(),
 
                 Event.builder()
@@ -170,7 +170,7 @@ public class DatabaseSeeder implements CommandLineRunner {
                     .published(true)
                     .bookingDeadline(Instant.now().plus(17, ChronoUnit.DAYS))
                     .organizerName("Capital Connect Network")
-                    .organizerContact("+919876543210")
+                    .organizerContact("+919307189068")
                     .build(),
 
                 Event.builder()
@@ -191,7 +191,7 @@ public class DatabaseSeeder implements CommandLineRunner {
                     .published(true)
                     .bookingDeadline(Instant.now().plus(39, ChronoUnit.DAYS))
                     .organizerName("Heritage Art Foundation")
-                    .organizerContact("+919876543210")
+                    .organizerContact("+919307189068")
                     .build()
             );
 

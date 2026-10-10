@@ -95,8 +95,18 @@ const EventDetails = () => {
       });
 
       if (res.data.success) {
-        toast.success('Booking created successfully!');
-        navigate('/booking-success', { state: { booking: res.data.data, event } });
+        const bookingData = res.data.data;
+        toast.success('Booking created successfully! Opening WhatsApp confirmation...');
+        
+        // Auto construct WhatsApp URL for direct submission to 919307189068
+        const targetPhone = '919307189068';
+        const waText = bookingData.whatsappFormattedText || `🎉 *EventSphere Booking Confirmation*\n\n📋 *Reference:* ${bookingData.bookingReference}\n📅 *Event:* ${event.title}\n🗓️ *Date:* ${event.eventDate}\n🎟️ *Tickets:* ${tickets}\n💰 *Total:* ₹${event.price ? event.price * tickets : 0}\n👤 *Attendee:* ${attendeeName}\n📞 *Phone:* ${attendeePhone}\n📧 *Email:* ${attendeeEmail}\n📍 *Location:* Ahilyanagar, India`;
+        const waUrl = `https://wa.me/${targetPhone}?text=${encodeURIComponent(waText)}`;
+        
+        // Open WhatsApp in new window
+        window.open(waUrl, '_blank', 'noopener,noreferrer');
+        
+        navigate('/booking-success', { state: { booking: bookingData, event } });
       }
     } catch (err) {
       console.error('Booking creation error:', err);
@@ -343,7 +353,7 @@ const EventDetails = () => {
                       value={attendeePhone}
                       onChange={(e) => setAttendeePhone(e.target.value)}
                       className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-violet-600"
-                      placeholder="+91 9876543210"
+                      placeholder="+91 9307189068"
                     />
                   </div>
                 </div>

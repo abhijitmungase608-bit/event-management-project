@@ -25,7 +25,7 @@ class EventSphereApplicationTests {
 		Event event = Event.builder()
 				.title("Tech Summit 2026")
 				.venue("Convention Center")
-				.city("Bengaluru")
+				.city("Ahilyanagar")
 				.eventDate(LocalDate.of(2026, 11, 15))
 				.startTime(LocalTime.of(10, 0))
 				.build();
@@ -33,16 +33,16 @@ class EventSphereApplicationTests {
 		Booking booking = Booking.builder()
 				.bookingReference("ES-202610-123456")
 				.attendeeName("John Doe")
-				.attendeePhone("+919876543210")
+				.attendeePhone("+919307189068")
 				.numberOfTickets(2)
 				.totalAmount(new BigDecimal("5998.00"))
 				.status(com.eventsphere.model.BookingStatus.CONFIRMED)
 				.build();
 
-		var draft = WhatsAppUtil.generateBookingDraft(booking, event, "919876543210", "ORGANIZER");
+		var draft = WhatsAppUtil.generateBookingDraft(booking, event, "919307189068", "ORGANIZER");
 
 		assertNotNull(draft);
-		assertTrue(draft.getClickToChatUrl().contains("wa.me/919876543210"));
+		assertTrue(draft.getClickToChatUrl().contains("wa.me/919307189068"));
 		assertTrue(draft.getRawText().contains("ES-202610-123456"));
 		assertTrue(draft.getRawText().contains("Tech Summit 2026"));
 	}

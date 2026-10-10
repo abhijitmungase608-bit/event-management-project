@@ -36,7 +36,7 @@ public class BookingService {
     private final EventRepository eventRepository;
     private final UserRepository userRepository;
 
-    @Value("${app.whatsapp.business-number:919876543210}")
+    @Value("${app.whatsapp.business-number:919307189068}")
     private String defaultBusinessNumber;
 
     public BookingService(BookingRepository bookingRepository, EventRepository eventRepository, UserRepository userRepository) {

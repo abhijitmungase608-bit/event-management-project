@@ -20,7 +20,7 @@ public class OpenApiConfig {
                         .title("EventSphere API Documentation")
                         .version("1.0.0")
                         .description("REST API documentation for EventSphere Event Management and Booking System")
-                        .contact(new Contact().name("EventSphere Team").email("support@eventsphere.com")))
+                        .contact(new Contact().name("EventSphere Team").email("agaleashwini24@gmail.com")))
                 .addSecurityItem(new SecurityRequirement().addList(securitySchemeName))
                 .components(new Components()
                         .addSecuritySchemes(securitySchemeName,
