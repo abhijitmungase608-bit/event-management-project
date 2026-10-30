@@ -84,7 +84,7 @@ const sampleGallery = [
 
 const Home = () => {
   const events = mockEventsData.slice(0, 6);
-  const targetPhone = '919307189068';
+  const targetPhone = '919763213440';
 
   return (
     <div className="space-y-16 bg-white text-slate-900 min-h-screen animate-fadeIn">
@@ -105,9 +105,9 @@ const Home = () => {
         {/* Text & Buttons Directly Over Image */}
         <div className="relative z-10 max-w-5xl mx-auto px-4 text-center space-y-6 my-auto text-white">
           
-          <div className="inline-flex items-center gap-2 bg-slate-950/70 backdrop-blur-md border border-amber-400/50 px-5 py-2 rounded-full text-amber-300 text-xs font-bold uppercase tracking-widest shadow-xl animate-float">
-            <Crown className="w-4 h-4 text-amber-400" />
-            ROYAL EVENTS • AHILYANAGAR, INDIA
+          <div className="inline-flex items-center gap-3 bg-slate-950/80 backdrop-blur-md border border-amber-400/60 px-5 py-2 rounded-full text-amber-300 text-xs font-bold uppercase tracking-wider shadow-2xl animate-float">
+            <img src="/logo.png" alt="APG Logo" className="w-6 h-6 rounded-full border border-amber-400 bg-black" />
+            <span>APG EVENT DECORATORS • वाहेगाव (VAHEGAON)</span>
           </div>
 
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold tracking-wide leading-tight drop-shadow-2xl animate-slideUp">
@@ -115,16 +115,16 @@ const Home = () => {
           </h1>
 
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-serif font-semibold text-amber-200 tracking-wider drop-shadow-lg animate-slideUp" style={{ animationDelay: '0.2s' }}>
-            Passionate Wedding Planner & Event Specialist in Ahilyanagar
+            ए.पी.जी. इव्हेंट डेकोरेटर्स, वाहेगाव — Event & Wedding Decor Specialist
           </h2>
 
           <p className="text-slate-200 text-sm sm:text-base font-sans max-w-2xl mx-auto leading-relaxed font-medium tracking-wide drop-shadow-md animate-slideUp" style={{ animationDelay: '0.3s' }}>
-            Weddings • Birthdays • Corporate Galas • Engagements • College Fests • Family Functions
+            Weddings • Royal Mandap • Birthdays • Corporate Events • Engagements • Family Functions
           </p>
 
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4 animate-slideUp" style={{ animationDelay: '0.4s' }}>
             <a
-              href={`https://wa.me/${targetPhone}?text=${encodeURIComponent('Hi Royal Events, I would like to plan my upcoming event with you in Ahilyanagar.')}`}
+              href={`https://wa.me/${targetPhone}?text=${encodeURIComponent('Hi APG Event Decorators, I would like to plan my upcoming event decor with you in वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar.')}`}
               target="_blank"
               rel="noreferrer"
               className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-bold uppercase tracking-widest text-xs px-8 py-4 rounded-xl shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 border border-emerald-400/30"
@@ -155,7 +155,7 @@ const Home = () => {
             Our Royal Event <span className="gradient-text-gold">Categories</span>
           </h2>
           <p className="text-slate-600 text-xs sm:text-sm max-w-xl mx-auto font-medium">
-            Explore our specialized event management services designed for every occasion in Ahilyanagar
+            Explore our specialized event management services designed for every occasion in वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar
           </p>
         </div>
 
@@ -202,7 +202,7 @@ const Home = () => {
                     </Link>
 
                     <a
-                      href={`https://wa.me/${targetPhone}?text=${encodeURIComponent(`Hi Royal Events, I am interested in booking a ${cat.title} event in Ahilyanagar.`)}`}
+                      href={`https://wa.me/${targetPhone}?text=${encodeURIComponent(`Hi Royal Events, I am interested in booking a ${cat.title} event in वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar.`)}`}
                       target="_blank"
                       rel="noreferrer"
                       className="bg-emerald-50 text-emerald-700 hover:bg-emerald-600 hover:text-white border border-emerald-200 text-xs font-bold px-3 py-1.5 rounded-xl transition-all flex items-center gap-1 hover:scale-105"
@@ -226,7 +226,7 @@ const Home = () => {
               Visual Highlights
             </span>
             <h2 className="text-3xl font-bold font-serif text-slate-900">Event Photo Portfolio</h2>
-            <p className="text-xs text-slate-600 font-medium">Glimpse of real organized celebrations in Ahilyanagar</p>
+            <p className="text-xs text-slate-600 font-medium">Glimpse of real organized celebrations in वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar</p>
           </div>
 
           <Link
@@ -299,26 +299,26 @@ const Home = () => {
               Direct Contact & Booking
             </span>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-serif">
-              Ready to Host Your Event in Ahilyanagar?
+              Ready to Decorate Your Event in वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar?
             </h3>
             <p className="text-xs sm:text-sm text-slate-600 max-w-xl font-medium">
-              Connect directly with Royal Events team on WhatsApp for custom decor estimates, venue bookings, and instant reservations.
+              Connect directly with APG Event Decorators (ए.पी.जी. इव्हेंट डेकोरेटर्स, वाहेगाव) on WhatsApp for royal mandap, lighting, flower decor, and event setups.
             </p>
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-xs text-slate-700 font-semibold pt-2">
-              <span className="flex items-center gap-1.5"><MapPin className="w-4 h-4 text-amber-700" /> Ahilyanagar, India</span>
-              <span className="flex items-center gap-1.5"><Phone className="w-4 h-4 text-emerald-700" /> +91 9307189068</span>
+              <span className="flex items-center gap-1.5"><MapPin className="w-4 h-4 text-amber-700" /> वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar</span>
+              <span className="flex items-center gap-1.5"><Phone className="w-4 h-4 text-emerald-700" /> +91 9763213440 / 9763822037 / 7559200988</span>
             </div>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto flex-shrink-0">
             <a
-              href={`https://wa.me/${targetPhone}?text=${encodeURIComponent('Hi Royal Events, I would like to inquire about booking/planning an event in Ahilyanagar.')}`}
+              href={`https://wa.me/${targetPhone}?text=${encodeURIComponent('Hi APG Event Decorators, I would like to inquire about event decor setups in वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar.')}`}
               target="_blank"
               rel="noreferrer"
               className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg flex items-center justify-center gap-2 text-xs hover:scale-105 transition-all"
             >
               <MessageSquare className="w-4 h-4" />
-              Chat on WhatsApp (+91 9307189068)
+              Chat on WhatsApp (+91 9763213440)
             </a>
 
             <Link

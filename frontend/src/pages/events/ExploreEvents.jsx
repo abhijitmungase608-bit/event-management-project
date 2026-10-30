@@ -49,7 +49,7 @@ const ExploreEvents = () => {
           Explore Royal <span className="gradient-text-gold">Events</span>
         </h1>
         <p className="text-slate-600 text-sm font-medium">
-          Browse upcoming weddings, birthday galas, corporate summits, engagements, college fests, and family functions in Ahilyanagar.
+          Browse upcoming weddings, birthday galas, corporate summits, engagements, college fests, and family functions in वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar.
         </p>
       </div>
 

@@ -14,7 +14,7 @@ const EventDetails = () => {
   const [attendeePhone, setAttendeePhone] = useState('');
   const [bookingLoading, setBookingLoading] = useState(false);
 
-  const targetPhone = '919307189068';
+  const targetPhone = '919763213440';
 
   const handleBookingSubmit = (e) => {
     e.preventDefault();
@@ -26,23 +26,23 @@ const EventDetails = () => {
 
     setBookingLoading(true);
 
-    const bookingRef = `RE-${Math.floor(100000 + Math.random() * 900000)}`;
+    const bookingRef = `APG-${Math.floor(100000 + Math.random() * 900000)}`;
     const totalPrice = event.price ? event.price * tickets : 0;
 
-    const waText = `🎉 *Royal Events Booking Request*\n\n📋 *Reference:* ${bookingRef}\n📅 *Event:* ${event.title}\n🗓️ *Date:* ${event.eventDate} @ ${event.startTime}\n📍 *Venue:* ${event.venue}, ${event.city}\n🎟️ *Tickets:* ${tickets}\n💰 *Total Amount:* ₹${totalPrice.toLocaleString('en-IN')}\n\n👤 *Attendee Name:* ${attendeeName}\n📞 *Phone:* ${attendeePhone}\n📧 *Email:* ${attendeeEmail}\n📍 *Location:* Ahilyanagar, India`;
+    const waText = `🎉 *APG Event Decorators Booking Request*\n*(ए.पी.जी. इव्हेंट डेकोरेटर्स, वाहेगाव)*\n\n📋 *Reference:* ${bookingRef}\n📅 *Event:* ${event.title}\n🗓️ *Date:* ${event.eventDate} @ ${event.startTime}\n📍 *Venue:* ${event.venue}, ${event.city}\n🎟️ *Tickets/Guests:* ${tickets}\n💰 *Total Amount:* ₹${totalPrice.toLocaleString('en-IN')}\n\n👤 *Client Name:* ${attendeeName}\n📞 *Phone:* ${attendeePhone}\n📧 *Email:* ${attendeeEmail}\n📍 *Location:* वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar`;
 
     const encodedText = encodeURIComponent(waText);
     const whatsappUrl = `https://wa.me/${targetPhone}?text=${encodedText}`;
 
     setTimeout(() => {
-      toast.success('Redirecting to WhatsApp to complete your booking directly with +91 9307189068!');
+      toast.success('Redirecting to WhatsApp to complete your booking with APG Decorators (+91 9763213440)!');
       window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
       setBookingLoading(false);
     }, 500);
   };
 
   const handleWhatsAppInquiry = () => {
-    const inquiryText = `Hi Royal Events, I have an inquiry about the event: *${event.title}* on ${event.eventDate} in Ahilyanagar.`;
+    const inquiryText = `Hi APG Event Decorators, I have an inquiry about the event: *${event.title}* on ${event.eventDate} in वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar.`;
     window.open(`https://wa.me/${targetPhone}?text=${encodeURIComponent(inquiryText)}`, '_blank', 'noopener,noreferrer');
   };
 
@@ -158,7 +158,7 @@ const EventDetails = () => {
               onClick={handleWhatsAppInquiry}
               className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow-md flex items-center gap-2 flex-shrink-0 transition-colors"
             >
-              Ask on WhatsApp (+91 9307189068)
+              Ask on WhatsApp (+91 9763213440)
             </button>
           </div>
         </div>
@@ -239,7 +239,7 @@ const EventDetails = () => {
                       value={attendeeEmail}
                       onChange={(e) => setAttendeeEmail(e.target.value)}
                       className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-amber-500"
-                      placeholder="agaleashwini24@gmail.com"
+                      placeholder="APG123@gmail.com"
                     />
                   </div>
 
@@ -251,7 +251,7 @@ const EventDetails = () => {
                       value={attendeePhone}
                       onChange={(e) => setAttendeePhone(e.target.value)}
                       className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-amber-500"
-                      placeholder="+91 9307189068"
+                      placeholder="+91 9763213440"
                     />
                   </div>
                 </div>
@@ -275,7 +275,7 @@ const EventDetails = () => {
                   className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-4 rounded-xl shadow-md flex items-center justify-center gap-2 disabled:opacity-50 transition-all text-xs uppercase tracking-wider"
                 >
                   <MessageSquare className="w-4 h-4" />
-                  {bookingLoading ? 'Redirecting...' : 'Book Directly on WhatsApp (+91 9307189068)'}
+                  {bookingLoading ? 'Redirecting...' : 'Book Directly on WhatsApp (+91 9763213440)'}
                 </button>
               </form>
             )}

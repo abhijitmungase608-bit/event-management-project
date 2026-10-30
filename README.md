@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# event-management-project
-=======
 # EventSphere — Professional Event Management & Booking System
 
 [![Java](https://img.shields.io/badge/Java-21%20LTS-orange.svg)](https://www.oracle.com/java/)
@@ -121,4 +118,3 @@ Upon initial startup, the backend automatically seeds initial sample events and 
 
 Detailed academic submission documentation, diagrams, and viva Q&A are located in `docs/`:
 - `docs/PROJECT_DOCUMENTATION.md`: Full academic project report, architecture, database design, testing matrix, user/admin manuals, and viva Q&A.
->>>>>>> e5a7761 (Initial commit - Event Sphere Management System)

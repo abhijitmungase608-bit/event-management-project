@@ -9,19 +9,19 @@ const Contact = () => {
   const [message, setMessage] = useState('');
   const [sending, setSending] = useState(false);
 
-  const targetPhone = '919307189068';
-  const targetEmail = 'agaleashwini24@gmail.com';
+  const targetPhone = '919763213440';
+  const targetEmail = 'APG123@gmail.com';
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSending(true);
 
-    const waText = `👋 *New Inquiry on Royal Events*\n\n👤 *Name:* ${name}\n📧 *Email:* ${email}\n📌 *Subject:* ${subject}\n💬 *Message:* ${message}`;
+    const waText = `👋 *New Inquiry on APG Event Decorators (ए.पी.जी. इव्हेंट डेकोरेटर्स)*\n\n👤 *Name:* ${name}\n📧 *Email:* ${email}\n📌 *Subject:* ${subject}\n💬 *Message:* ${message}\n📍 *Location:* वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar`;
     const encodedWaText = encodeURIComponent(waText);
     const whatsappUrl = `https://wa.me/${targetPhone}?text=${encodedWaText}`;
 
     setTimeout(() => {
-      toast.success('Redirecting to WhatsApp to send message directly to +91 9307189068!');
+      toast.success('Redirecting to WhatsApp to send message directly to +91 9763213440!');
       window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
       setSending(false);
       setName('');
@@ -32,7 +32,7 @@ const Contact = () => {
   };
 
   const handleDirectEmail = () => {
-    const mailtoUrl = `mailto:${targetEmail}?subject=${encodeURIComponent(subject || 'Royal Events Inquiry')}&body=${encodeURIComponent(message || 'Hello Royal Events Team,')}`;
+    const mailtoUrl = `mailto:${targetEmail}?subject=${encodeURIComponent(subject || 'APG Event Decorators Inquiry')}&body=${encodeURIComponent(message || 'Hello APG Event Decorators Team,')}`;
     window.location.href = mailtoUrl;
   };
 
@@ -41,10 +41,10 @@ const Contact = () => {
       
       <div className="text-center space-y-3 max-w-2xl mx-auto">
         <h1 className="text-4xl font-extrabold font-serif text-slate-900 tracking-tight">
-          Get in Touch with <span className="gradient-text-gold">Royal Events</span>
+          Get in Touch with <span className="gradient-text-gold">APG Event Decorators</span>
         </h1>
         <p className="text-slate-600 text-sm font-medium">
-          Have questions regarding event hosting, ticket bookings, or custom wedding planning? We are here to help in Ahilyanagar, India.
+          ए.पी.जी. इव्हेंट डेकोरेटर्स, वाहेगाव — Mandap decor, stage lighting, floral arrangements & event bookings in वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar.
         </p>
       </div>
 
@@ -58,8 +58,8 @@ const Contact = () => {
             <div className="flex items-start gap-3 text-xs">
               <MapPin className="w-4 h-4 text-amber-700 flex-shrink-0 mt-0.5" />
               <div>
-                <span className="text-slate-500 block font-semibold">Headquarters Location</span>
-                <span className="text-slate-900 font-bold">Ahilyanagar, India</span>
+                <span className="text-slate-500 block font-semibold">Location / Address</span>
+                <span className="text-slate-900 font-bold">वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar, Maharashtra</span>
               </div>
             </div>
 
@@ -73,9 +73,12 @@ const Contact = () => {
                   rel="noreferrer"
                   className="text-emerald-700 hover:underline font-bold flex items-center gap-1 mt-0.5"
                 >
-                  +91 9307189068
+                  +91 9763213440
                   <ExternalLink className="w-3 h-3" />
                 </a>
+                <span className="text-slate-700 font-semibold block mt-1">
+                  9763822037 / 7559200988
+                </span>
               </div>
             </div>
 
@@ -87,7 +90,7 @@ const Contact = () => {
                   href={`mailto:${targetEmail}`}
                   className="text-amber-800 hover:underline font-bold block mt-0.5 break-all"
                 >
-                  agaleashwini24@gmail.com
+                  APG123@gmail.com
                 </a>
               </div>
             </div>
@@ -95,7 +98,7 @@ const Contact = () => {
             {/* Quick WhatsApp Action Button */}
             <div className="pt-4 border-t border-slate-100 space-y-2">
               <a
-                href={`https://wa.me/${targetPhone}?text=${encodeURIComponent('Hi Royal Events, I would like to inquire about event management & bookings.')}`}
+                href={`https://wa.me/${targetPhone}?text=${encodeURIComponent('Hi APG Event Decorators, I would like to inquire about event decor setups in वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar.')}`}
                 target="_blank"
                 rel="noreferrer"
                 className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-4 rounded-xl shadow-md flex items-center justify-center gap-2 text-xs transition-all"
@@ -147,7 +150,7 @@ const Contact = () => {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="agaleashwini24@gmail.com"
+                    placeholder="APG123@gmail.com"
                     className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-amber-500"
                   />
                 </div>
@@ -184,7 +187,7 @@ const Contact = () => {
                   className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-md flex items-center justify-center gap-2 text-sm disabled:opacity-50 transition-all"
                 >
                   <MessageSquare className="w-4 h-4" />
-                  {sending ? 'Redirecting to WhatsApp...' : 'Submit to WhatsApp (+91 9307189068)'}
+                  {sending ? 'Redirecting to WhatsApp...' : 'Submit to WhatsApp (+91 9763213440)'}
                 </button>
               </div>
             </form>
