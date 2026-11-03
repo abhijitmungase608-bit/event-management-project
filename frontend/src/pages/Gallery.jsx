@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Sparkles, MessageSquare, X, MapPin, Eye } from 'lucide-react';
+import { getStoredGallery } from '../data/imageManager';
 
 const galleryItems = [
   // Wedding
@@ -122,39 +123,44 @@ const galleryItems = [
 const categories = ['All', 'Wedding', 'Birthday', 'Corporate', 'Engagement', 'College Events', 'Family Functions'];
 
 const Gallery = () => {
+  const [galleryList, setGalleryList] = useState(getStoredGallery);
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedPhoto, setSelectedPhoto] = useState(null);
 
-  const filteredItems = activeCategory === 'All' 
-    ? galleryItems 
-    : galleryItems.filter(item => item.category === activeCategory);
+  useEffect(() => {
+    setGalleryList(getStoredGallery());
+  }, []);
 
-  const targetPhone = '919763213440';
+  const filteredItems = activeCategory === 'All' 
+    ? galleryList 
+    : galleryList.filter(item => item.category === activeCategory);
+
+  const targetPhone = '917559200988';
 
   return (
-    <div className="bg-white text-slate-900 min-h-screen py-12 px-4 sm:px-6 lg:px-8 space-y-12 animate-fadeIn">
+    <div className="bg-white text-slate-900 min-h-screen py-8 sm:py-12 px-3 sm:px-6 lg:px-8 space-y-8 sm:space-y-12 animate-fadeIn">
       
       {/* Header */}
-      <div className="max-w-4xl mx-auto text-center space-y-4 animate-slideDown">
-        <span className="text-xs font-bold uppercase tracking-widest text-amber-800 bg-amber-100 px-4 py-1.5 rounded-full border border-amber-200 inline-flex items-center gap-1.5 animate-float">
-          <Sparkles className="w-3.5 h-3.5" />
-          Royal Events Event Portfolio & Photo Gallery
+      <div className="max-w-4xl mx-auto text-center space-y-3 sm:space-y-4 animate-slideDown px-2">
+        <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-amber-800 bg-amber-100 px-3 sm:px-4 py-1.5 rounded-full border border-amber-200 inline-flex items-center gap-1.5 animate-float">
+          <Sparkles className="w-3.5 h-3.5 flex-shrink-0" />
+          <span>APG Events Event Portfolio & Photo Gallery</span>
         </span>
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight font-serif">
+        <h1 className="text-2xl xs:text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight font-serif leading-tight">
           Our Royal Event <span className="gradient-text-gold">Photo Gallery</span>
         </h1>
-        <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto font-medium">
+        <p className="text-slate-600 text-xs sm:text-base leading-relaxed max-w-2xl mx-auto font-medium">
           Click any photo below to view complete details, full size view, and direct WhatsApp booking inquiry.
         </p>
       </div>
 
       {/* Category Filter Bar */}
-      <div className="max-w-5xl mx-auto flex flex-wrap items-center justify-center gap-2 sm:gap-3 animate-slideUp">
+      <div className="max-w-5xl mx-auto flex flex-wrap items-center justify-center gap-1.5 sm:gap-3 animate-slideUp px-1">
         {categories.map((cat) => (
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 hover:scale-105 ${
+            className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-sm font-semibold transition-all duration-300 hover:scale-105 touch-manipulation ${
               activeCategory === cat
                 ? 'bg-amber-500 text-slate-950 font-bold shadow-md'
                 : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200'
@@ -166,7 +172,7 @@ const Gallery = () => {
       </div>
 
       {/* Photos Grid with Zoom & Fade Animations */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {filteredItems.map((item, idx) => (
           <div
             key={item.id}
@@ -247,7 +253,7 @@ const Gallery = () => {
                 className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg flex items-center justify-center gap-2 text-xs hover:scale-105 transition-all"
               >
                 <MessageSquare className="w-4 h-4" />
-                Book This Event Type on WhatsApp (+91 9763213440)
+                Book This Event Type on WhatsApp (+91 7559200988)
               </a>
             </div>
           </div>

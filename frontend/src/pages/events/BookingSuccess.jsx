@@ -26,8 +26,8 @@ const BookingSuccess = () => {
 
   const draftData = {
     rawText: booking.whatsappFormattedText || `Hello, my booking reference is ${booking.bookingReference} for ${booking.eventTitle}.`,
-    clickToChatUrl: booking.whatsappUrl || 'https://wa.me/919763213440',
-    recipientPhone: '919763213440',
+    clickToChatUrl: booking.whatsappUrl || 'https://wa.me/917559200988',
+    recipientPhone: '917559200988',
   };
 
   return (

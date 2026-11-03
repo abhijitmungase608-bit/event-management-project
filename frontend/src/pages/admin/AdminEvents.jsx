@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import axiosClient from '../../api/axiosClient';
 import AdminSidebar from '../../components/layout/AdminSidebar';
@@ -216,8 +217,8 @@ const AdminEvents = () => {
                       <button
                         onClick={() => handleTogglePublish(e.id)}
                         className={`px-2.5 py-1 rounded-full font-semibold text-[10px] uppercase flex items-center gap-1 transition-colors ${e.published
-                            ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'
-                            : 'bg-slate-800 text-slate-400 border border-slate-700'
+                          ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'
+                          : 'bg-slate-800 text-slate-400 border border-slate-700'
                           }`}
                       >
                         {e.published ? <Eye className="w-3 h-3" /> : <EyeOff className="w-3 h-3" />}
