@@ -3,12 +3,12 @@ export const mockEventsData = [
     id: '1',
     title: 'Royal Destination Wedding & Sangeet Gala',
     slug: 'royal-destination-wedding-sangeet-gala',
-    description: 'Grand luxury destination wedding ceremony with floral mandap decor, acoustic orchestra, sangeet stage, and gourmet banquet dining in Ahilyanagar.',
+    description: 'Grand luxury destination wedding ceremony with floral mandap decor, acoustic orchestra, sangeet stage, and gourmet banquet dining in वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar.',
     category: 'Wedding',
     coverImage: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80',
     venue: 'Grand Palace Lawns & Convention Center',
     address: 'Ring Road, Near City Center',
-    city: 'Ahilyanagar',
+    city: 'वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar',
     eventDate: '2026-11-15',
     startTime: '17:00',
     endTime: '23:30',
@@ -16,19 +16,19 @@ export const mockEventsData = [
     capacity: 500,
     availableSeats: 412,
     published: true,
-    organizerName: 'Royal Events',
-    organizerContact: '+919307189068'
+    organizerName: 'APG Event Decorators',
+    organizerContact: '+919763213440'
   },
   {
     id: '2',
     title: 'Milestone 25th Silver Birthday Gala Party',
     slug: 'milestone-25th-silver-birthday-gala-party',
-    description: 'Exclusive theme birthday party with DJ console, neon balloon arch setups, custom photobooths, and mocktail lounge bar in Ahilyanagar.',
+    description: 'Exclusive theme birthday party with DJ console, neon balloon arch setups, custom photobooths, and mocktail lounge bar in वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar.',
     category: 'Birthday',
     coverImage: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1200&q=80',
     venue: 'Skyline Rooftop Lounge',
     address: 'Station Road, Commercial Hub',
-    city: 'Ahilyanagar',
+    city: 'वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar',
     eventDate: '2026-11-20',
     startTime: '18:30',
     endTime: '23:59',
@@ -36,8 +36,8 @@ export const mockEventsData = [
     capacity: 200,
     availableSeats: 160,
     published: true,
-    organizerName: 'Royal Events',
-    organizerContact: '+919307189068'
+    organizerName: 'APG Event Decorators',
+    organizerContact: '+919763213440'
   },
   {
     id: '3',
@@ -46,9 +46,9 @@ export const mockEventsData = [
     description: 'Corporate annual convention featuring keynote stages, LED video walls, AI tech workshops, product launch booths, and VIP delegate dinner.',
     category: 'Corporate',
     coverImage: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80',
-    venue: 'Ahilyanagar Tech & Trade Expo Center',
+    venue: 'वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar Tech & Trade Expo Center',
     address: 'MIDC Industrial Area, Phase 2',
-    city: 'Ahilyanagar',
+    city: 'वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar',
     eventDate: '2026-11-28',
     startTime: '09:30',
     endTime: '18:00',
@@ -56,8 +56,8 @@ export const mockEventsData = [
     capacity: 800,
     availableSeats: 650,
     published: true,
-    organizerName: 'Royal Events',
-    organizerContact: '+919307189068'
+    organizerName: 'APG Event Decorators',
+    organizerContact: '+919763213440'
   },
   {
     id: '4',
@@ -68,7 +68,7 @@ export const mockEventsData = [
     coverImage: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=80',
     venue: 'The Heritage Resort Garden',
     address: 'Gulmohar Road, Cantonment Area',
-    city: 'Ahilyanagar',
+    city: 'वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar',
     eventDate: '2026-11-10',
     startTime: '16:00',
     endTime: '21:30',
@@ -76,8 +76,8 @@ export const mockEventsData = [
     capacity: 250,
     availableSeats: 190,
     published: true,
-    organizerName: 'Royal Events',
-    organizerContact: '+919307189068'
+    organizerName: 'APG Event Decorators',
+    organizerContact: '+919763213440'
   },
   {
     id: '5',
@@ -88,7 +88,7 @@ export const mockEventsData = [
     coverImage: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80',
     venue: 'University Campus Open Air Stadium',
     address: 'University Road',
-    city: 'Ahilyanagar',
+    city: 'वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar',
     eventDate: '2026-12-05',
     startTime: '10:00',
     endTime: '22:00',
@@ -96,8 +96,8 @@ export const mockEventsData = [
     capacity: 1500,
     availableSeats: 1200,
     published: true,
-    organizerName: 'Royal Events',
-    organizerContact: '+919307189068'
+    organizerName: 'APG Event Decorators',
+    organizerContact: '+919763213440'
   },
   {
     id: '6',
@@ -108,7 +108,7 @@ export const mockEventsData = [
     coverImage: 'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=1200&q=80',
     venue: 'Shree Krishna Cultural Hall',
     address: 'Savedi Road',
-    city: 'Ahilyanagar',
+    city: 'वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar',
     eventDate: '2026-12-10',
     startTime: '11:00',
     endTime: '16:00',
@@ -116,7 +116,7 @@ export const mockEventsData = [
     capacity: 300,
     availableSeats: 240,
     published: true,
-    organizerName: 'Royal Events',
-    organizerContact: '+919307189068'
+    organizerName: 'APG Event Decorators',
+    organizerContact: '+919763213440'
   }
 ];

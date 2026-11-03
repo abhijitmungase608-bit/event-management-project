@@ -7,7 +7,7 @@ const servicesList = [
     title: 'Wedding & Destination Marriages',
     icon: Heart,
     image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80',
-    description: 'Complete luxury wedding planning including royal mandap decor, guest hospitality, sangeet lighting, bridal stage setup, and catering management in Ahilyanagar.',
+    description: 'Complete luxury wedding planning including royal mandap decor, guest hospitality, sangeet lighting, bridal stage setup, and catering management in वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar.',
     features: ['Royal Mandap & Floral Decor', 'Sangeet & DJ Sound Stage', 'Gourmet Catering & Menu Planning', 'Bridal & Groom Hospitality']
   },
   {
@@ -53,7 +53,7 @@ const servicesList = [
 ];
 
 const Services = () => {
-  const targetPhone = '919307189068';
+  const targetPhone = '919763213440';
 
   return (
     <div className="bg-white text-slate-900 min-h-screen py-12 px-4 sm:px-6 lg:px-8 space-y-16">
@@ -68,7 +68,7 @@ const Services = () => {
           Luxury Event Planning & <span className="gradient-text-gold">Management Services</span>
         </h1>
         <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto font-medium">
-          From opulent weddings to high-energy corporate galas and intimate family functions in Ahilyanagar, we organize every detail with royal perfection.
+          From opulent weddings to high-energy corporate galas and intimate family functions in वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar, we organize every detail with royal perfection.
         </p>
       </div>
 
@@ -111,13 +111,13 @@ const Services = () => {
 
               <div className="p-6 pt-0">
                 <a
-                  href={`https://wa.me/${targetPhone}?text=${encodeURIComponent(`Hi Royal Events, I want to book/inquire about your ${service.title} service in Ahilyanagar.`)}`}
+                  href={`https://wa.me/${targetPhone}?text=${encodeURIComponent(`Hi Royal Events, I want to book/inquire about your ${service.title} service in वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar.`)}`}
                   target="_blank"
                   rel="noreferrer"
                   className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow-md flex items-center justify-center gap-2 text-xs transition-all"
                 >
                   <MessageSquare className="w-4 h-4" />
-                  Inquire / Book on WhatsApp (+91 9307189068)
+                  Inquire / Book on WhatsApp (+91 9763213440)
                 </a>
               </div>
             </div>

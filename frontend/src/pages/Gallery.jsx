@@ -9,7 +9,7 @@ const galleryItems = [
     category: 'Wedding',
     image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80',
     description: 'Grand outdoor wedding ceremony with royal mandap decor, pink & white roses, luxury aisle seating, and traditional mandap stage setup.',
-    location: 'Ahilyanagar, India'
+    location: 'वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar, India'
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const galleryItems = [
     category: 'Wedding',
     image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80',
     description: 'Bespoke stage lighting, chandelier arrangements, live acoustic performance, and royal banquet feast for wedding reception.',
-    location: 'Ahilyanagar, India'
+    location: 'वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar, India'
   },
   {
     id: 3,
@@ -25,7 +25,7 @@ const galleryItems = [
     category: 'Wedding',
     image: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1200&q=80',
     description: 'Elegant seaside wedding mandap setup with draped white canopy, floral arches, and sunset ocean view.',
-    location: 'Ahilyanagar, India'
+    location: 'वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar, India'
   },
 
   // Birthday
@@ -35,7 +35,7 @@ const galleryItems = [
     category: 'Birthday',
     image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1200&q=80',
     description: 'Pastel balloon arches, custom cake tables, magic shows, photobooths, and interactive fun zone for kids.',
-    location: 'Ahilyanagar, India'
+    location: 'वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar, India'
   },
   {
     id: 5,
@@ -43,7 +43,7 @@ const galleryItems = [
     category: 'Birthday',
     image: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1200&q=80',
     description: 'Neon rooftop party setup with DJ console, sparkling mocktail bar, theme lighting, and photobooth.',
-    location: 'Ahilyanagar, India'
+    location: 'वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar, India'
   },
 
   // Corporate
@@ -53,7 +53,7 @@ const galleryItems = [
     category: 'Corporate',
     image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80',
     description: 'Annual corporate convention featuring LED video walls, keynote stages, delegate registration, and VIP lounges.',
-    location: 'Ahilyanagar, India'
+    location: 'वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar, India'
   },
   {
     id: 7,
@@ -61,7 +61,7 @@ const galleryItems = [
     category: 'Corporate',
     image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80',
     description: 'Black-tie gala dinner with trophy distribution, live orchestration, gourmet dining, and speeches.',
-    location: 'Ahilyanagar, India'
+    location: 'वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar, India'
   },
 
   // Engagement
@@ -71,7 +71,7 @@ const galleryItems = [
     category: 'Engagement',
     image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=80',
     description: 'Fairytale ring exchange setup with fairy lights, floral arches, personalized signboards, and acoustic violin music.',
-    location: 'Ahilyanagar, India'
+    location: 'वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar, India'
   },
   {
     id: 9,
@@ -79,7 +79,7 @@ const galleryItems = [
     category: 'Engagement',
     image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1200&q=80',
     description: 'Glamorous evening engagement celebration with ambient lighting, dance floor, DJ, and signature drinks.',
-    location: 'Ahilyanagar, India'
+    location: 'वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar, India'
   },
 
   // College Events
@@ -89,7 +89,7 @@ const galleryItems = [
     category: 'College Events',
     image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80',
     description: 'Inter-college rock band competition, dance battles, fashion walks, food stalls, and celebrity guest star night.',
-    location: 'Ahilyanagar, India'
+    location: 'वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar, India'
   },
   {
     id: 11,
@@ -97,7 +97,7 @@ const galleryItems = [
     category: 'College Events',
     image: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1200&q=80',
     description: 'Project exhibitions, robotic arena, coding hackathons, guest lectures, and student award ceremonies.',
-    location: 'Ahilyanagar, India'
+    location: 'वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar, India'
   },
 
   // Family Functions
@@ -107,7 +107,7 @@ const galleryItems = [
     category: 'Family Functions',
     image: 'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=1200&q=80',
     description: 'Golden jubliee celebration with family slideshows, traditional feast, floral garlands, and memory photo booths.',
-    location: 'Ahilyanagar, India'
+    location: 'वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar, India'
   },
   {
     id: 13,
@@ -115,7 +115,7 @@ const galleryItems = [
     category: 'Family Functions',
     image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80',
     description: 'Warm floral traditional decor, marigold garlands, puja arrangements, and family feast management.',
-    location: 'Ahilyanagar, India'
+    location: 'वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar, India'
   }
 ];
 
@@ -129,7 +129,7 @@ const Gallery = () => {
     ? galleryItems 
     : galleryItems.filter(item => item.category === activeCategory);
 
-  const targetPhone = '919307189068';
+  const targetPhone = '919763213440';
 
   return (
     <div className="bg-white text-slate-900 min-h-screen py-12 px-4 sm:px-6 lg:px-8 space-y-12 animate-fadeIn">
@@ -238,7 +238,7 @@ const Gallery = () => {
 
             <div className="pt-4 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
               <span className="text-xs text-slate-600 font-semibold">
-                Want a similar setup for your event in Ahilyanagar?
+                Want a similar setup for your event in वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar?
               </span>
               <a
                 href={`https://wa.me/${targetPhone}?text=${encodeURIComponent(`Hi Royal Events, I am interested in booking a ${selectedPhoto.category} event like: ${selectedPhoto.title}`)}`}
@@ -247,7 +247,7 @@ const Gallery = () => {
                 className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg flex items-center justify-center gap-2 text-xs hover:scale-105 transition-all"
               >
                 <MessageSquare className="w-4 h-4" />
-                Book This Event Type on WhatsApp (+91 9307189068)
+                Book This Event Type on WhatsApp (+91 9763213440)
               </a>
             </div>
           </div>
