@@ -1,72 +1,48 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import axiosClient from '../api/axiosClient';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
-    const savedUser = localStorage.getItem('eventsphere_user');
-    return savedUser ? JSON.parse(savedUser) : null;
+    try {
+      const savedUser = localStorage.getItem('apg_admin_user');
+      return savedUser ? JSON.parse(savedUser) : null;
+    } catch {
+      return null;
+    }
   });
-  const [token, setToken] = useState(() => localStorage.getItem('eventsphere_token') || null);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchCurrentUser = async () => {
-      if (token) {
-        try {
-          const res = await axiosClient.get('/api/auth/me');
-          if (res.data.success) {
-            setUser(res.data.data);
-            localStorage.setItem('eventsphere_user', JSON.stringify(res.data.data));
-          }
-        } catch (err) {
-          console.error('Failed to fetch user context:', err);
-          logout();
-        }
-      }
-      setLoading(false);
-    };
-    fetchCurrentUser();
-  }, [token]);
+  const [loading, setLoading] = useState(false);
 
   const login = async (email, password) => {
-    const res = await axiosClient.post('/api/auth/login', { email, password });
-    if (res.data.success) {
-      const { token: jwt, user: userData } = res.data.data;
-      setToken(jwt);
-      setUser(userData);
-      localStorage.setItem('eventsphere_token', jwt);
-      localStorage.setItem('eventsphere_user', JSON.stringify(userData));
-      return userData;
-    }
-    throw new Error(res.data.message || 'Login failed');
-  };
+    const cleanEmail = email.trim().toLowerCase();
+    const cleanPass = password.trim();
 
-  const register = async (fullName, email, phone, password) => {
-    const res = await axiosClient.post('/api/auth/register', { fullName, email, phone, password });
-    if (res.data.success) {
-      const { token: jwt, user: userData } = res.data.data;
-      setToken(jwt);
-      setUser(userData);
-      localStorage.setItem('eventsphere_token', jwt);
-      localStorage.setItem('eventsphere_user', JSON.stringify(userData));
-      return userData;
+    // Check requested admin credentials
+    if (cleanEmail === 'apg123@gmail.com' && cleanPass === 'APG@123') {
+      const adminData = {
+        id: 'admin-1',
+        fullName: 'APG Admin',
+        email: 'apg123@gmail.com',
+        role: 'ROLE_ADMIN'
+      };
+      setUser(adminData);
+      localStorage.setItem('apg_admin_user', JSON.stringify(adminData));
+      return adminData;
     }
-    throw new Error(res.data.message || 'Registration failed');
+
+    throw new Error('Invalid email or password! Please check your credentials.');
   };
 
   const logout = () => {
     setUser(null);
-    setToken(null);
-    localStorage.removeItem('eventsphere_token');
-    localStorage.removeItem('eventsphere_user');
+    localStorage.removeItem('apg_admin_user');
   };
 
   const isAdmin = user?.role === 'ROLE_ADMIN';
 
   return (
-    <AuthContext.Provider value={{ user, token, loading, login, register, logout, isAdmin }}>
+    <AuthContext.Provider value={{ user, loading, login, logout, isAdmin }}>
       {children}
     </AuthContext.Provider>
   );

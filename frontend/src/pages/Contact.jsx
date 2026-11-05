@@ -9,7 +9,7 @@ const Contact = () => {
   const [message, setMessage] = useState('');
   const [sending, setSending] = useState(false);
 
-  const targetPhone = '919763213440';
+  const targetPhone = '917559200988';
   const targetEmail = 'APG123@gmail.com';
 
   const handleSubmit = (e) => {
@@ -21,7 +21,7 @@ const Contact = () => {
     const whatsappUrl = `https://wa.me/${targetPhone}?text=${encodedWaText}`;
 
     setTimeout(() => {
-      toast.success('Redirecting to WhatsApp to send message directly to +91 9763213440!');
+      toast.success('Redirecting to WhatsApp to send message directly to +91 7559200988!');
       window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
       setSending(false);
       setName('');
@@ -37,23 +37,23 @@ const Contact = () => {
   };
 
   return (
-    <div className="bg-white text-slate-900 min-h-screen py-12 px-4 sm:px-6 lg:px-8 space-y-10">
+    <div className="bg-white text-slate-900 min-h-screen py-8 sm:py-12 px-3 sm:px-6 lg:px-8 space-y-6 sm:space-y-10">
       
       <div className="text-center space-y-3 max-w-2xl mx-auto">
-        <h1 className="text-4xl font-extrabold font-serif text-slate-900 tracking-tight">
+        <h1 className="text-2xl xs:text-3xl sm:text-4xl font-extrabold font-serif text-slate-900 tracking-tight">
           Get in Touch with <span className="gradient-text-gold">APG Event Decorators</span>
         </h1>
-        <p className="text-slate-600 text-sm font-medium">
+        <p className="text-slate-600 text-xs sm:text-sm font-medium">
           ए.पी.जी. इव्हेंट डेकोरेटर्स, वाहेगाव — Mandap decor, stage lighting, floral arrangements & event bookings in वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar.
         </p>
       </div>
 
-      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
         
         {/* Contact Info Sidebar */}
         <div className="space-y-6 md:col-span-1">
-          <div className="bg-white p-6 rounded-3xl space-y-5 border border-slate-200 shadow-md">
-            <h3 className="text-lg font-bold font-serif text-slate-900 mb-2">Contact Details</h3>
+          <div className="bg-white p-5 sm:p-6 rounded-2xl sm:rounded-3xl space-y-5 border border-slate-200 shadow-md">
+            <h3 className="text-base sm:text-lg font-bold font-serif text-slate-900 mb-2">Contact Details</h3>
             
             <div className="flex items-start gap-3 text-xs">
               <MapPin className="w-4 h-4 text-amber-700 flex-shrink-0 mt-0.5" />
@@ -73,11 +73,11 @@ const Contact = () => {
                   rel="noreferrer"
                   className="text-emerald-700 hover:underline font-bold flex items-center gap-1 mt-0.5"
                 >
-                  +91 9763213440
+                  +91 7559200988
                   <ExternalLink className="w-3 h-3" />
                 </a>
                 <span className="text-slate-700 font-semibold block mt-1">
-                  9763822037 / 7559200988
+                  9763213440 / 9763822037
                 </span>
               </div>
             </div>
@@ -101,7 +101,7 @@ const Contact = () => {
                 href={`https://wa.me/${targetPhone}?text=${encodeURIComponent('Hi APG Event Decorators, I would like to inquire about event decor setups in वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar.')}`}
                 target="_blank"
                 rel="noreferrer"
-                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-4 rounded-xl shadow-md flex items-center justify-center gap-2 text-xs transition-all"
+                className="w-full bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-bold py-3 px-4 rounded-xl shadow-md flex items-center justify-center gap-2 text-xs transition-all touch-manipulation"
               >
                 <MessageSquare className="w-4 h-4" />
                 Chat Directly on WhatsApp
@@ -110,7 +110,7 @@ const Contact = () => {
               <button
                 type="button"
                 onClick={handleDirectEmail}
-                className="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-2.5 px-4 rounded-xl border border-slate-300 flex items-center justify-center gap-2 text-xs transition-all"
+                className="w-full bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-800 font-bold py-3 px-4 rounded-xl border border-slate-300 flex items-center justify-center gap-2 text-xs transition-all touch-manipulation"
               >
                 <Mail className="w-4 h-4 text-amber-700" />
                 Send Email directly
@@ -121,13 +121,15 @@ const Contact = () => {
 
         {/* Form Column */}
         <div className="md:col-span-2">
-          <div className="bg-white p-8 rounded-3xl space-y-6 border border-slate-200 shadow-md">
-            <h3 className="text-xl font-bold font-serif text-slate-900 flex items-center gap-2">
-              Send Us a Direct Message
-              <span className="text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full border border-emerald-200">
+          <div className="bg-white p-5 sm:p-8 rounded-2xl sm:rounded-3xl space-y-5 sm:space-y-6 border border-slate-200 shadow-md">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <h3 className="text-lg sm:text-xl font-bold font-serif text-slate-900">
+                Send Us a Direct Message
+              </h3>
+              <span className="text-[11px] font-bold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full border border-emerald-200 w-fit">
                 Direct WhatsApp & Mail
               </span>
-            </h3>
+            </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -176,18 +178,18 @@ const Contact = () => {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Write your detailed inquiry here..."
-                  className="w-full bg-slate-50 border border-slate-300 rounded-xl p-4 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-amber-500"
+                  className="w-full bg-slate-50 border border-slate-300 rounded-xl p-3.5 sm:p-4 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-amber-500"
                 ></textarea>
               </div>
 
-              <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
+              <div className="pt-2">
                 <button
                   type="submit"
                   disabled={sending}
-                  className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-6 rounded-xl shadow-md flex items-center justify-center gap-2 text-sm disabled:opacity-50 transition-all"
+                  className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-bold py-3 px-6 rounded-xl shadow-md flex items-center justify-center gap-2 text-xs sm:text-sm disabled:opacity-50 transition-all touch-manipulation"
                 >
-                  <MessageSquare className="w-4 h-4" />
-                  {sending ? 'Redirecting to WhatsApp...' : 'Submit to WhatsApp (+91 9763213440)'}
+                  <MessageSquare className="w-4 h-4 flex-shrink-0" />
+                  <span>{sending ? 'Redirecting to WhatsApp...' : 'Submit to WhatsApp (+91 7559200988)'}</span>
                 </button>
               </div>
             </form>

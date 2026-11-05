@@ -17,7 +17,7 @@ export const mockEventsData = [
     availableSeats: 412,
     published: true,
     organizerName: 'APG Event Decorators',
-    organizerContact: '+919763213440'
+    organizerContact: '+917559200988'
   },
   {
     id: '2',
@@ -37,7 +37,7 @@ export const mockEventsData = [
     availableSeats: 160,
     published: true,
     organizerName: 'APG Event Decorators',
-    organizerContact: '+919763213440'
+    organizerContact: '+917559200988'
   },
   {
     id: '3',
@@ -57,7 +57,7 @@ export const mockEventsData = [
     availableSeats: 650,
     published: true,
     organizerName: 'APG Event Decorators',
-    organizerContact: '+919763213440'
+    organizerContact: '+917559200988'
   },
   {
     id: '4',
@@ -77,7 +77,7 @@ export const mockEventsData = [
     availableSeats: 190,
     published: true,
     organizerName: 'APG Event Decorators',
-    organizerContact: '+919763213440'
+    organizerContact: '+917559200988'
   },
   {
     id: '5',
@@ -97,7 +97,7 @@ export const mockEventsData = [
     availableSeats: 1200,
     published: true,
     organizerName: 'APG Event Decorators',
-    organizerContact: '+919763213440'
+    organizerContact: '+917559200988'
   },
   {
     id: '6',
@@ -117,6 +117,6 @@ export const mockEventsData = [
     availableSeats: 240,
     published: true,
     organizerName: 'APG Event Decorators',
-    organizerContact: '+919763213440'
+    organizerContact: '+917559200988'
   }
 ];
