@@ -14,6 +14,7 @@ import EventDetails from './pages/events/EventDetails';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Gallery from './pages/Gallery';
+import Photography from './pages/Photography';
 import Services from './pages/Services';
 import Login from './pages/auth/Login';
 import AdminManageImages from './pages/admin/AdminManageImages';
@@ -46,6 +47,7 @@ function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/gallery" element={<Gallery />} />
+                <Route path="/photography" element={<Photography />} />
                 <Route path="/events/:id" element={<EventDetails />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/login" element={<Login />} />

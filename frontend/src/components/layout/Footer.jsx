@@ -40,6 +40,7 @@ const Footer = () => {
               <li><Link to="/about" className="hover:text-amber-600 transition-colors py-0.5 inline-block">About APG Decorators</Link></li>
               <li><Link to="/services" className="hover:text-amber-600 transition-colors py-0.5 inline-block">Our Event Services</Link></li>
               <li><Link to="/gallery" className="hover:text-amber-600 transition-colors py-0.5 inline-block">Photo Gallery & Portfolio</Link></li>
+              <li><Link to="/photography" className="hover:text-amber-600 transition-colors py-0.5 inline-block font-semibold text-amber-700">Photography & Cinematography</Link></li>
               <li><Link to="/contact" className="hover:text-amber-600 transition-colors py-0.5 inline-block">Contact Support</Link></li>
               <li><Link to="/login" className="text-amber-700 hover:text-amber-800 transition-colors font-bold py-0.5 inline-block">Admin Portal / Login</Link></li>
             </ul>

@@ -73,12 +73,12 @@ export const initialGalleryItems = [
 ];
 
 export const initialHomeBanner = {
-  heroImage: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=2000&q=90',
+  heroImage: '/hero-mandap.jpg',
   logoImage: '/logo.png',
   badgeMr: 'APG EVENT DECORATORS • वाहेगाव (VAHEGAON)',
   badgeEn: 'APG EVENT DECORATORS • WAHEGAON',
   titleMr: 'तुमच्या प्रत्येक सोहळ्याला देऊ शाही व देखणे रूप!',
-  titleEn: 'We will plan every detail of your dream event!',
+  titleEn: '',
   subtitleMr: 'ए.पी.जी. इव्हेंट डेकोरेटर्स, वाहेगाव — Event & Wedding Decor Specialist',
   subtitleEn: 'APG Event Decorators, Wahegaon — Event & Wedding Decor Specialist',
   overviewMr: 'वाढदिवस समारंभ • डोहाळे जेवण • लग्न समारंभ • उद्घाटन सोहळा • नामकरण सोहळा • लग्न गाडी सजावट • हळदी / मेहंदी समारंभ',
@@ -123,7 +123,23 @@ export const saveStoredGallery = (data) => {
 export const getStoredBanner = () => {
   try {
     const saved = localStorage.getItem('apg_banner_data');
-    return saved ? JSON.parse(saved) : initialHomeBanner;
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      let changed = false;
+      if (!parsed.heroImage || parsed.heroImage.includes('unsplash.com')) {
+        parsed.heroImage = '/hero-mandap.jpg';
+        changed = true;
+      }
+      if (parsed.titleEn === 'We will plan every detail of your dream event!' || (parsed.titleEn && parsed.titleEn.includes('dream event'))) {
+        parsed.titleEn = '';
+        changed = true;
+      }
+      if (changed) {
+        try { localStorage.setItem('apg_banner_data', JSON.stringify(parsed)); } catch (err) {}
+      }
+      return parsed;
+    }
+    return initialHomeBanner;
   } catch (e) {
     return initialHomeBanner;
   }

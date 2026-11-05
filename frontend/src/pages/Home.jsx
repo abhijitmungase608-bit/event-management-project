@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, MapPin, Phone, MessageSquare, Image as ImageIcon } from 'lucide-react';
+import { ArrowRight, MapPin, Phone, MessageSquare, Image as ImageIcon, Camera } from 'lucide-react';
 import { getStoredServices, getStoredBanner, getStoredContact } from '../data/imageManager';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -10,7 +10,7 @@ const sampleGallery = [
     titleEn: 'Royal Destination Mandap Setup',
     categoryMr: 'लग्न समारंभ',
     categoryEn: 'Wedding',
-    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80'
+    image: '/hero-mandap.jpg'
   },
   {
     titleMr: 'ग्रँड वाढदिवस थीम पार्टी',
@@ -67,67 +67,66 @@ const Home = () => {
     <div className="space-y-16 bg-white text-slate-900 min-h-screen animate-fadeIn">
       
       {/* VIBRANT MANDAP HERO BANNER SECTION WITH ANIMATIONS */}
-      <section className="relative min-h-[85vh] py-20 flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[85vh] sm:min-h-[90vh] pt-10 sm:pt-16 pb-6 sm:pb-8 flex flex-col justify-between items-center overflow-hidden">
         
         {/* Mandap Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src={banner.heroImage || "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=2000&q=90"}
+            src={banner.heroImage || "/hero-mandap.jpg"}
             alt="Beachside Outdoor Wedding Mandap Stage Background"
-            className="w-full h-full object-cover scale-105 filter brightness-85 transition-transform duration-1000 ease-out hover:scale-100"
+            className="w-full h-full object-cover object-center scale-105 filter brightness-90 transition-transform duration-1000 ease-out hover:scale-100"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/50 to-slate-950/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/25 to-slate-950/60" />
         </div>
 
-        {/* Text & Buttons Directly Over Image */}
-        <div className="relative z-10 max-w-5xl mx-auto px-4 text-center space-y-4 sm:space-y-6 my-auto text-white">
+        {/* Top/Center Text Over Image */}
+        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center space-y-3 sm:space-y-4 text-white pt-2 sm:pt-4">
           
           <div className="inline-flex items-center gap-2 sm:gap-3 bg-slate-950/85 backdrop-blur-md border border-amber-400/60 px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-amber-300 text-[10px] sm:text-xs font-bold uppercase tracking-wider shadow-2xl animate-float">
             <img src="/logo.png" alt="APG Logo" className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border border-amber-400 bg-black flex-shrink-0" />
             <span className="truncate max-w-[260px] sm:max-w-none">{lang === 'mr' ? (banner.badgeMr || 'APG EVENT DECORATORS • वाहेगाव') : (banner.badgeEn || 'APG EVENT DECORATORS • WAHEGAON')}</span>
           </div>
 
-          <h1 className="text-2xl xs:text-3xl sm:text-5xl lg:text-7xl font-serif font-bold tracking-wide leading-tight drop-shadow-2xl animate-slideUp px-2">
-            {lang === 'mr' ? (
-              <>{banner.titleMr || 'तुमच्या प्रत्येक सोहळ्याला देऊ शाही व देखणे रूप!'}</>
-            ) : (
-              <>{banner.titleEn || 'We will plan every detail of your dream event!'}</>
-            )}
-          </h1>
+          {(lang === 'mr' ? (banner.titleMr || 'तुमच्या प्रत्येक सोहळ्याला देऊ शाही व देखणे रूप!') : banner.titleEn) && (
+            <h1 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl font-serif font-bold tracking-wide leading-tight drop-shadow-2xl animate-slideUp px-2">
+              {lang === 'mr' ? (banner.titleMr || 'तुमच्या प्रत्येक सोहळ्याला देऊ शाही व देखणे रूप!') : banner.titleEn}
+            </h1>
+          )}
 
-          <h2 className="text-base xs:text-lg sm:text-2xl lg:text-3xl font-serif font-semibold text-amber-200 tracking-wider drop-shadow-lg animate-slideUp px-2" style={{ animationDelay: '0.2s' }}>
+          <h2 className="text-sm xs:text-base sm:text-xl lg:text-2xl font-serif font-semibold text-amber-200 tracking-wider drop-shadow-lg animate-slideUp px-2" style={{ animationDelay: '0.2s' }}>
             {lang === 'mr' ? (banner.subtitleMr || 'ए.पी.जी. इव्हेंट डेकोरेटर्स, वाहेगाव — Event & Wedding Decor Specialist') : (banner.subtitleEn || 'APG Event Decorators, Wahegaon — Event & Wedding Decor Specialist')}
           </h2>
 
-          <p className="text-slate-200 text-xs sm:text-sm lg:text-base font-sans max-w-3xl mx-auto leading-relaxed font-medium tracking-wide drop-shadow-md animate-slideUp px-2" style={{ animationDelay: '0.3s' }}>
+          <p className="text-slate-200 text-[11px] xs:text-xs sm:text-sm font-sans max-w-2xl mx-auto leading-relaxed font-medium tracking-wide drop-shadow-md animate-slideUp px-2" style={{ animationDelay: '0.3s' }}>
             {lang === 'mr' 
               ? (banner.overviewMr || 'वाढदिवस समारंभ • डोहाळे जेवण • लग्न समारंभ • उद्घाटन सोहळा • नामकरण सोहळा • लग्न गाडी सजावट • हळदी / मेहंदी समारंभ')
               : (banner.overviewEn || 'Birthdays • Dohale Jevan • Wedding Mandap • Inaugurations • Naming Ceremonies • Car Decor • Haldi / Mehendi')}
           </p>
+        </div>
 
-          <div className="pt-3 sm:pt-4 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 animate-slideUp w-full max-w-md sm:max-w-none mx-auto" style={{ animationDelay: '0.4s' }}>
-            <a
-              href={`https://wa.me/${targetPhone}?text=${encodeURIComponent(
-                lang === 'mr'
-                  ? 'नमस्कार APG इव्हेंट डेकोरेटर्स, मला आमच्या सोहळ्याच्या डेकोरेशनबद्दल चौकशी करायची आहे.'
-                  : 'Hi APG Event Decorators, I would like to plan my upcoming event decor with you in वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar.'
-              )}`}
-              target="_blank"
-              rel="noreferrer"
-              className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-bold uppercase tracking-wider text-xs px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 border border-emerald-400/30 touch-manipulation"
-            >
-              <MessageSquare className="w-4 h-4 flex-shrink-0" />
-              <span>{lang === 'mr' ? 'व्हाट्सॲपवर संपर्क करा' : 'PLAN MY EVENT (WHATSAPP)'}</span>
-            </a>
+        {/* Compact CTA Buttons Positioned at Bottom of Image */}
+        <div className="relative z-10 w-full px-4 pt-6 pb-2 flex flex-col xs:flex-row items-center justify-center gap-2.5 sm:gap-4 animate-slideUp" style={{ animationDelay: '0.35s' }}>
+          <a
+            href={`https://wa.me/${targetPhone}?text=${encodeURIComponent(
+              lang === 'mr'
+                ? 'नमस्कार APG इव्हेंट डेकोरेटर्स, मला आमच्या सोहळ्याच्या डेकोरेशनबद्दल चौकशी करायची आहे.'
+                : 'Hi APG Event Decorators, I would like to plan my upcoming event decor with you in वाहेगाव (Wahegaon), Tal. Paithan ,Dist. Chha. Sambhajinagar.'
+            )}`}
+            target="_blank"
+            rel="noreferrer"
+            className="w-auto min-w-[190px] xs:min-w-0 bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-bold uppercase tracking-wider text-[11px] sm:text-xs px-4 sm:px-6 py-2.5 sm:py-3 rounded-full sm:rounded-xl shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 border border-emerald-400/30 touch-manipulation backdrop-blur-xs"
+          >
+            <MessageSquare className="w-4 h-4 flex-shrink-0" />
+            <span>{lang === 'mr' ? 'व्हाट्सॲपवर संपर्क करा' : 'PLAN MY EVENT (WHATSAPP)'}</span>
+          </a>
 
-            <Link
-              to="/gallery"
-              className="w-full sm:w-auto bg-amber-500 hover:bg-amber-400 active:scale-95 text-slate-950 font-bold uppercase tracking-wider text-xs px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 touch-manipulation"
-            >
-              <ImageIcon className="w-4 h-4 flex-shrink-0" />
-              <span>{lang === 'mr' ? 'फोटो गॅलरी पहा' : 'VIEW OUR PORTFOLIO'}</span>
-            </Link>
-          </div>
+          <Link
+            to="/gallery"
+            className="w-auto min-w-[190px] xs:min-w-0 bg-amber-500 hover:bg-amber-400 active:scale-95 text-slate-950 font-bold uppercase tracking-wider text-[11px] sm:text-xs px-4 sm:px-6 py-2.5 sm:py-3 rounded-full sm:rounded-xl shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 touch-manipulation"
+          >
+            <ImageIcon className="w-4 h-4 flex-shrink-0" />
+            <span>{lang === 'mr' ? 'फोटो गॅलरी पहा' : 'VIEW OUR PORTFOLIO'}</span>
+          </Link>
         </div>
       </section>
 
@@ -274,6 +273,53 @@ const Home = () => {
               </div>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* LUXURY PHOTOGRAPHY & CINEMATOGRAPHY SHOWCASE BANNER */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative rounded-3xl overflow-hidden border border-[#ded3ca] bg-gradient-to-r from-[#2c2a28] via-[#3a3530] to-[#2c2a28] text-white p-8 sm:p-12 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div className="space-y-4 max-w-2xl text-center lg:text-left">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-serif font-bold tracking-wider text-[#e8cbb6] bg-white/10 border border-white/20">
+              <Camera className="w-3.5 h-3.5 text-amber-400" />
+              {lang === 'mr' ? 'शाही फोटोग्राफी व सिनेमॅटोग्राफी' : 'Royal Photography & Cinematography'}
+            </span>
+            <h3 className="text-2xl sm:text-4xl font-serif font-bold text-white leading-tight">
+              {lang === 'mr' 
+                ? 'लग्नसोहळा व प्रत्येक क्षणांचे भव्य ड्रोन शूटिंग आणि सिनेमॅटिक फोटो'
+                : 'Capturing Life\'s Grandest Moments from Earth & Sky'}
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-300 font-serif leading-relaxed">
+              {lang === 'mr'
+                ? 'सोनी सिनेमा कॅमेरे आणि DJI ड्रोनच्या साहाय्याने शाही लग्न, प्री-वेडिंग आणि सर्व सोहळ्यांचे सिनेमॅटिक व्हिडिओ आणि फोटो शूट.'
+                : 'Royal weddings, cinematic drone films, and editorial portraits — composed with the grandeur of Indian heritage and aerial craft.'}
+            </p>
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs text-amber-300 font-medium pt-1">
+              <span>✓ 4+ Years Experience</span>
+              <span>✓ 250+ Wedding Shoots</span>
+              <span>✓ Cinematic Drone 4K</span>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row lg:flex-col gap-3 w-full sm:w-auto flex-shrink-0">
+            <Link
+              to="/photography"
+              className="px-6 py-3.5 bg-[#a07355] hover:bg-[#8c5e42] active:scale-95 text-white font-serif font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg transition-all text-center flex items-center justify-center gap-2"
+            >
+              <Camera className="w-4 h-4" />
+              <span>{lang === 'mr' ? 'फोटोग्राफी दालन पहा' : 'Explore Photography'}</span>
+            </Link>
+
+            <a
+              href={`https://wa.me/${targetPhone}?text=${encodeURIComponent('Hi APG Event Decorators, I would like to inquire about Wedding Photography & Cinematography packages.')}`}
+              target="_blank"
+              rel="noreferrer"
+              className="px-6 py-3.5 bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-serif font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg transition-all text-center flex items-center justify-center gap-2"
+            >
+              <MessageSquare className="w-4 h-4" />
+              <span>{lang === 'mr' ? 'व्हाट्सॲपवर चौकशी करा' : 'Inquire on WhatsApp'}</span>
+            </a>
+          </div>
         </div>
       </section>
 
